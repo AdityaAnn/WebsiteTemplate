@@ -23,6 +23,7 @@
       src="https://unpkg.com/@alpinejs/mask@3.x.x/dist/cdn.min.js"
       defer
     ></script>
+
     <script
       src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
       defer
@@ -39,6 +40,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.1/slimselect.min.css"
       rel="stylesheet"
     />
+
   </head>
   <style>
     .tagline-background {
@@ -67,36 +69,6 @@
   </style>
 
   <body>
-    <!--
-    <nav class="navbar navbar-expand-md navbar-light sticky-top bg-light">
-      <div class="container-fluid">
-        <img class="d-block mx-auto mx-sm-0" src="https://uc468c41381a48a53c3d67cbcc73.previews.dropboxusercontent.com/p/thumb/ABljzdidkN6P9sLF4uau6DrseaPqETWtq9L8TRTOvsR3eNTlay-UQJYxYii3ztro990igXigdAN8wmH7sgu-Tef65T_pANPZHzXg5qmbTLnWkmSHf2YAe8mmqJHL0yzRi5qdWxWKcNwPXWsiWrYblxEcp0_Ef_baR-dznuL3CINqT2dnOSZA4XCKUNgvW1Blzffub0yWRdHLqjmQNlQAE1fAqe1O-UHZpVFEVPfkrbb_rOyQL2OYG0bzSECK8HNEDbgQ4uK3Z4uT7gyD5Sxc8ew-fkiabOkIYgH7VdMs52SP9tyG6UXHaMeH8r-enpWHeJo912dhKUq67665Ft_oUUHdfCYAjlkNGrp_-LclxhccEmlUD7zNVeux4PMsVai2i5CAmnv-SsrYW2HGGkDOGiTVC1-9oujyzlkD2J9IIbvApQ/p.png" href="#" />
-        <div class="justify-content-center">
-          <ul class="navbar-nav p-1">
-            <li class="pe-3">
-              <button
-                class="btn btn-outline-danger rounded-pill d-none d-md-block"
-              >
-                Call Now To Apply <br/>(800)-849-0247
-              </button>
-            </li>
-            <li class="p-2">
-              <button
-                class="btn btn-outline-danger active rounded-pill btn-hover "
-                aria-current="page"
-                data-bs-toggle="modal" data-bs-target="#exampleModal"
-              >
-                Apply Now!
-              </button>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <a href="#" class="float">
-      <div class="fa fa-plus my-float"></div>
-    </a>
-  -->
     <nav class="navbar navbar-expand-md navbar-light sticky-top bg-light">
       <div
         class="container-fluid justify-content-sm-between justify-content-center"
@@ -281,14 +253,11 @@
                     You may opt out any time. Message & data rates may apply.
                   </div>
                 </div>
-
-                <button
-                  type="submit"
-                  value="SUBMIT"
-                  class="btn btn-primary d-block mr-0 ml-auto"
-                >
-                  Submit
-                </button>
+                <div class="d-grid justify-content-end">
+                  <button type="submit" value="SUBMIT" class="btn btn-primary">
+                    Submit
+                  </button>
+                </div>
               </form>
             </div>
           </div>
@@ -322,6 +291,9 @@
             <a
               href="#"
               class="btn btn-danger py-2 px-4 fw-bold rounded-pill text-uppercase"
+              aria-current="page"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
               >Apply Now For Regional</a
             >
           </div>
@@ -332,6 +304,9 @@
             <a
               href="#"
               class="btn btn-danger py-2 px-4 fw-bold rounded-pill text-uppercase"
+              aria-current="page"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
               >Apply Now For Teams</a
             >
           </div>
@@ -342,6 +317,9 @@
             <a
               href="#"
               class="btn btn-danger py-2 px-4 fw-bold rounded-pill text-uppercase"
+              aria-current="page"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
             ></a>
           </div>
         </div>
@@ -440,6 +418,9 @@
               <button
                 href="#"
                 class="btn btn-danger py-2 px-4 fw-bold rounded-pill text-uppercase"
+                aria-current="page"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
               >
                 Apply Now For Regional
               </button>
@@ -450,6 +431,9 @@
               <button
                 href="#"
                 class="btn btn-danger py-2 px-4 fw-bold rounded-pill text-uppercase"
+                aria-current="page"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
               >
                 APPLY NOW FOR TEAMS
               </button>
@@ -485,47 +469,47 @@
     ></script>
 
     <script>
-      let newValue=[];
-      let oldValue=[];
       const select = new SlimSelect({
         select: "#multiple",
         showSearch: false,
         closeOnSelect: false,
-        onChange(data){
-          newValue=data;
-          if(!oldValue.length){
-            oldValue=data;
+        onChange(data) {
+          this.newValue = data;
+          const noneOpt = this.data.data.find(
+            (option) => option.text === "None"
+          );
+          if (this.newValue.length > 1) {
+            if (
+              this.oldValue.findIndex((option) => option.id === noneOpt.id) !==
+              -1
+            ) {
+              this.newValue.splice(
+                this.newValue.findIndex((option) => option.id === noneOpt.id),
+                1
+              );
+              this.oldValue = this.newValue;
+              this.set([this.newValue[0].value]);
+              this.open();
+              return;
+            }
+            if (this.newValue.find((option) => option.text == "None")) {
+              this.oldValue = this.newValue = [noneOpt];
+              this.set([noneOpt.value]);
+              return;
+            }
           }
-
-          console.log(data);
-          let values=[];
-          data.forEach(val => {
-            values.push(
-              val.text
-            );
-          })
-
-          
-
-          console.log(values)
-          if (values.includes("None") && values.length==2){
-            select.set([""])
-          }
-          else if(values.includes("None") && values.length> 1){
-            select.set(["1"])
-          }
-         
-        }
-
+          this.oldValue = data;
+        },
       });
-      console.log(select)
-        
+      select.newValue = [];
+      select.oldValue = [];
 
+      console.log(select);
     </script>
 
     <script>
-      var myModal = document.getElementById("myModal");
-      var myInput = document.getElementById("myInput");
+      var myModal = document.getElementById("exampleModal");
+      var myInput = document.getElementById("fname");
 
       myModal.addEventListener("shown.bs.modal", function () {
         myInput.focus();
