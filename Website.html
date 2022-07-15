@@ -13,6 +13,10 @@
       crossorigin="anonymous"
     />
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.1/slimselect.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/umbrellajs"></script>
+
     <script
       src="https://cdn.jsdelivr.net/npm/@kingshott/iodine@8.0.0/dist/iodine.min.umd.js"
       defer
@@ -49,7 +53,7 @@
     .light-bold {
       font-weight: 600;
     }
-    .Font-Size-txt {
+    .small-text {
       font-size: 10px;
     }
     .round-img {
@@ -60,11 +64,7 @@
       object-fit: contain;
     }
     .ss-main .ss-multi-selected {
-      padding: 10px;
-      margin: 0px;
-    }
-    input:invalid {
-      background-color: red;
+      padding: 5px;
     }
   </style>
 
@@ -90,7 +90,7 @@
               class="btn btn-outline-danger active rounded-pill btn-hover"
               aria-current="page"
               data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
+              data-bs-target="#applyNowModal"
             >
               Apply Now!
             </button>
@@ -102,14 +102,14 @@
     <section>
       <div
         class="modal fade"
-        id="exampleModal"
-        aria-labelledby="exampleModalLabel"
+        id="applyNowModal"
+        aria-labelledby="applyNowModalLabel"
         aria-hidden="true"
       >
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Apply Now</h5>
+              <h5 class="modal-title" id="applyNowModalLabel">Apply Now</h5>
               <button
                 type="button"
                 class="btn-close"
@@ -129,6 +129,7 @@
                   <label for="First-Name">First Name:</label>
                   <input
                     class="form-control"
+                    id="fname"
                     name="fname"
                     data-rules="['required']"
                     @blur="validateField($el)"
@@ -193,7 +194,7 @@
                 <div class="mb-3">
                   <label
                     >Do you have any endorsements?<br /><span
-                      class="text-muted Font-Size-txt"
+                      class="text-muted small-text"
                       >Select multiple if nessessary</span
                     ></label
                   >
@@ -242,7 +243,7 @@
                 </div>
 
                 <div class="my-4">
-                  <div class="text-secondary Font-Size-txt">
+                  <div class="text-secondary small-text">
                     By providing my phone number and clicking the button below,
                     I agree to the Terms & Conditions and Privacy Policy,
                     provide my electronic signature, and consent to receive
@@ -293,7 +294,7 @@
               class="btn btn-danger py-2 px-4 fw-bold rounded-pill text-uppercase"
               aria-current="page"
               data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
+              data-bs-target="#applyNowModal"
               >Apply Now For Regional</a
             >
           </div>
@@ -306,7 +307,7 @@
               class="btn btn-danger py-2 px-4 fw-bold rounded-pill text-uppercase"
               aria-current="page"
               data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
+              data-bs-target="#applyNowModal"
               >Apply Now For Teams</a
             >
           </div>
@@ -319,7 +320,7 @@
               class="btn btn-danger py-2 px-4 fw-bold rounded-pill text-uppercase"
               aria-current="page"
               data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
+              data-bs-target="#applyNowModal"
             ></a>
           </div>
         </div>
@@ -420,7 +421,7 @@
                 class="btn btn-danger py-2 px-4 fw-bold rounded-pill text-uppercase"
                 aria-current="page"
                 data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
+                data-bs-target="#applyNowModal"
               >
                 Apply Now For Regional
               </button>
@@ -433,7 +434,7 @@
                 class="btn btn-danger py-2 px-4 fw-bold rounded-pill text-uppercase"
                 aria-current="page"
                 data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
+                data-bs-target="#applyNowModal"
               >
                 APPLY NOW FOR TEAMS
               </button>
@@ -445,30 +446,8 @@
 
     <section class="bg-dark p-4"></section>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"
-    ></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.1/slimselect.min.js"></script>
-
-    <script
-      src="https://cdn.jsdelivr.net/npm/@kingshott/iodine@8.0.0/dist/iodine.min.umd.js"
-      defer
-    ></script>
-    <script src="https://cdn.jsdelivr.net/npm/umbrellajs"></script>
-    <script
-      defer
-      src="https://unpkg.com/@alpinejs/mask@3.x.x/dist/cdn.min.js"
-      defer
-    ></script>
-    <script
-      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
-      defer
-    ></script>
-
     <script>
+      // Creating SlimSelect component
       const select = new SlimSelect({
         select: "#multiple",
         showSearch: false,
@@ -504,18 +483,15 @@
       select.newValue = [];
       select.oldValue = [];
 
-      console.log(select);
-    </script>
+      // Focus on the first modal input field
+      const applyNowModal = document.getElementById("applyNowModal");
+      const firstInput = document.getElementById("fname");
 
-    <script>
-      var myModal = document.getElementById("exampleModal");
-      var myInput = document.getElementById("fname");
-
-      myModal.addEventListener("shown.bs.modal", function () {
-        myInput.focus();
+      applyNowModal.addEventListener("shown.bs.modal", function () {
+        firstInput.focus();
       });
-    </script>
-    <script>
+
+      //Validation and masking helper functions
       function validateOnSubmit(event) {
         // Runs validation on all form input fields containing data-rules attributes
         const form = event.target;
