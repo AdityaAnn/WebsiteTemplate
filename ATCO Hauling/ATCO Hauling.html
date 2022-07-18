@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ATCO Hauling</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.1/slimselect.min.css"
+      rel="stylesheet"
+    />
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@kingshott/iodine@8.0.0/dist/iodine.min.umd.js"
+      defer
+    ></script>
+    <script
+      src="https://unpkg.com/@alpinejs/mask@3.x.x/dist/cdn.min.js"
+      defer
+    ></script>
+    <script
+      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+      defer
+    ></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.1/slimselect.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/umbrellajs"></script>
+  </head>
+
+  <style>
+    .tagline-background {
+      background-color: #eeeeee;
+    }
+    .light-bold {
+      font-weight: 600;
+    }
+    .small-text {
+      font-size: 10px;
+    }
+    .round-img {
+      border-radius: 30px;
+    }
+    .positions-section img {
+      width: 100%;
+      object-fit: contain;
+    }
+    .ss-main .ss-multi-selected {
+      padding: 5px;
+    }
+  </style>
+
+  <body>
+    <nav class="navbar navbar-expand-md navbar-light sticky-top bg-light">
+      <div
+        class="container-fluid justify-content-sm-between justify-content-center"
+      >
+        <img
+          class="d-block mx-auto mx-sm-0"
+          height="100px"
+          src="https://uc57dab552f2212c35511fbc91ed.previews.dropboxusercontent.com/p/thumb/ABkoglw5AKYlLGrPsnwvqj-TGsS3mzI3NMuIABGlyadPrINAE7IwfE_okUmK3HyGznk-TvqDmyBoIVV_yMw6wi_gRATVuhEPpFQ4MQrVoxqTYqcqyyANyGskbNi8SMQSnoOZKgnkTkz_Uq2Au9-LK-JodJQ9vDws8m7r9fKKei4MXA4FoP3fINq5ewpK1DsLBimOm2Chj3yb5TjptRxczjVPGh1wxYOjWU8qxiZ8row1dEspNP4qppKGdBVbmraPReR0AIKa9JAbW93hC5T5bwB1MiaLN5aq9bzdiyEmcWkeUUCqbIuvlsCCb2bDpH4kxxXamHFF0HecEZ_I2VX2_rE4QIFP3KA8XX0LyuviAVYBwF9kPN1RfREdT88q0NiZ1rEoOG-I_ddZTk7kTVO8RmVDrzwUcS9MhoISZu8hD04bxA/p.png"
+          href="#"
+        />
+
+        <div class="d-flex mt-2">
+          <button
+            class="btn btn-outline-primary rounded-pill d-none d-md-block me-2"
+          >
+            Call Now To Apply <br />(800)-849-0247
+          </button>
+          <div class="my-auto">
+            <button
+              class="btn btn-outline-primary active rounded-pill btn-hover"
+              aria-current="page"
+              data-bs-toggle="modal"
+              data-bs-target="#applyNowModal"
+            >
+              Apply Now!
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section>
+      <div
+        class="modal fade"
+        id="applyNowModal"
+        aria-labelledby="applyNowModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="applyNowModalLabel">Apply Now</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form
+                action="#"
+                method="POST"
+                novalidate
+                x-data=""
+                @submit="validateOnSubmit"
+              >
+                <div class="mb-3">
+                  <label for="First-Name">First Name:</label>
+                  <input
+                    class="form-control"
+                    id="fname"
+                    name="fname"
+                    data-rules="['required']"
+                    @blur="validateField($el)"
+                  />
+                  <div class="invalid-feedback">First Name is required.</div>
+                </div>
+                <div class="mb-3">
+                  <label for="Last-Name">Last Name:</label>
+                  <input
+                    class="form-control"
+                    name="lname"
+                    data-rules="['required']"
+                    @blur="validateField($el)"
+                  />
+                  <div class="invalid-feedback">Last Name is required.</div>
+                </div>
+                <div class="mb-3">
+                  <label for="Zip">Zip:</label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="zip"
+                    data-rules="['required','minLength:4','maxLength:5']"
+                    @blur="validateField($el)"
+                    x-mask="99999"
+                  />
+                  <div class="invalid-feedback">
+                    Please enter a 5 digit zip code.
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="email">Email:</label>
+                  <input
+                    class="form-control"
+                    type="email"
+                    id="email"
+                    name="email"
+                    @keydown="limitKeys"
+                    data-valid-key-regex="[a-zA-Z0-9@-_+~.]"
+                    data-rules="['required','email']"
+                    @blur="validateField($el)"
+                  />
+                  <div class="invalid-feedback">
+                    Please enter a valid email address.
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="phone">Enter your phone number:</label>
+                  <input
+                    class="form-control"
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    data-rules="['required','minLength:14']"
+                    @blur="validateField($el)"
+                    x-mask="(999) 999-9999"
+                  />
+                  <div class="invalid-feedback">
+                    Please enter a valid phone number.
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label
+                    >Do you have any endorsements?<br /><span
+                      class="text-muted small-text"
+                      >Select multiple if nessessary</span
+                    ></label
+                  >
+                  <select
+                    id="multiple"
+                    data-rules="['required', 'minLength:1']"
+                    multiple
+                  >
+                    <option value="1">None</option>
+                    <option value="2">
+                      Combination of Tank Vehicles and Hazrdous Materials
+                    </option>
+                    <option value="3">Double/Triple Trailers</option>
+                    <option value="4">Hazrdous Materials</option>
+                    <option value="5">Tank Vehicles</option>
+                    <option value="6">Passenger</option>
+                    <option value="7">School Bus</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Please select endoresements.
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label>How much CDL-A Experience?</label>
+                  <select
+                    class="form-select"
+                    data-rules="['required', 'minLength:1']"
+                  >
+                    <option value="" selected disabled>
+                      Open this select menu
+                    </option>
+                    <option value="0">None</option>
+                    <option value="1">CDL Grad School</option>
+                    <option value="2">CDL Grad</option>
+                    <option value="1-5">1-5 months</option>
+                    <option value="6-11">6-11 months</option>
+                    <option value="12">1 Year</option>
+                    <option value="24">2 Years</option>
+                    <option value="36">3 Years</option>
+                    <option value="48">4 Year</option>
+                    <option value="60">5+ Years</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Please describe your experience.
+                  </div>
+                </div>
+
+                <div class="my-4">
+                  <div class="text-secondary small-text">
+                    By providing my phone number and clicking the button below,
+                    I agree to the Terms & Conditions and Privacy Policy,
+                    provide my electronic signature, and consent to receive
+                    automated marketing calls or text messages (e.g.,
+                    prerecorded and/or autodialed calls), regardless of any
+                    previous registration on any company, State or National Do
+                    Not Call list, and emails from ______ and AvatarFleet LLC.
+                    You may opt out any time. Message & data rates may apply.
+                  </div>
+                </div>
+                <div class="d-grid justify-content-end">
+                  <button type="submit" value="SUBMIT" class="btn btn-primary">
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-4">
+      <div class="row section" id="about">
+        <p class="text-center fs-1 fw-bolder">Earn More. <u>Play More</u>!</p>
+      </div>
+      <div class="container">
+        <div class="row row-cols-1 row-cols-lg-1 g-4">
+          <div class="col">
+              <img src="https://ucbb5e72cdef34a726dafcd8ef82.previews.dropboxusercontent.com/p/thumb/ABnM9I-miGny55nP_3CFYZxLInH7XmhaxRdgACAq8iy0zKgfBh2Ef8s-VqnHP-l9__u_3MmlVmewmEbyG-hCUVhr6ZyzhEcZJg1xhHWCmQmwCvWtSYXITfQq0azKMX_6IyW47QBM9vaMJA_c4ZRApaaluaNeuibzoT4jxVyb92GyRp7XkAKaD9pWiZ3-Qa3Um0Usl4IlSVpfCY0lKJcQaJxs_x2xesY-v2pcRh6JbTUsiP9mxoL7g-W5b4PSc0ILft5kCLOojk2t7W7l5JqMTtFFhT3ZLdka046p_P_dZhFTm-Uxd1vQdlfAJEFnmFgTkRdAhz2B8vLVlVbnASZhbmIFUQOanMQRbsM6baL7kYxbUMuNaTdq4kGytSML7dY_KQelPOm0d3KYy9Jb6VhXtyaknDFk3SZvmXh5-RE9wMaCug/p.jpeg" class="card-img round-img" alt="">
+        </div>
+      </div>
+      <p class="text-center text-secondary pt-5">
+        With ATCO, you're home every night, you earn $1,200/week. Guaranteed.
+      </p>
+    </section>
+
+    <section class="p-2 positions-section">
+      <p class="text-center fs-3 fw-bolder pb-3">
+        Start Your Application By Using the Buttons Below:
+      </p>
+      <div class="container">
+        <div class="row text-center row-cols-1 row-cols-lg-2 g-4">
+          <div class="col">
+            <div class="mb-3">
+              <img
+                src="https://uccbee25c834c8a71b69f4e46fe4.previews.dropboxusercontent.com/p/thumb/ABnPRvR48U4o93kW_DRFqdMO3ikUy0qdabtveLem1b3DovBQG1vtFqcBBdorGWQuDLpxvBAe4AEcUO9pObgH3adPzFVxJQKuxMDSplLOq35Rfz5XUfy-xyvhzuSxUrtI6A5vSFWqJbixSBmFDpR8HaEOkRRBd2X3dwqoS86_druHpHSAUtSF3B1cL6nGuIL4Rw4MooLkVRdKNTHDaeyDX7PDaCDA0NgTnR-FKlP43KnWUidbr80BRCUbCDLVNF_SfiKXFGcPEyV047tsEW2Ls1OEgMMDQpWlxJdZivGKaJpf0XtqIJ7mf8t2Nva7cPZJ1k0Qlh0sGYa1bkh36z0bt9O5yZjjs-uyShX36S5o_ys9KrFChnjUcleWgCbl-DaoJGsP45yfIP7Kacwo4Bo2hQQ-EPayOrXYOB1TWPeToVaASA/p.jpeg"
+                class="card-img"
+                alt="..."
+              />
+            </div>
+            <a
+              href="#"
+              class="btn btn-danger py-2 px-4 fw-bold rounded-pill text-uppercase"
+              aria-current="page"
+              data-bs-toggle="modal"
+              data-bs-target="#applyNowModal"
+              >Apply Now For Dump</a
+            >
+          </div>
+          <div class="col">
+            <div class="mb-3">
+              <img
+                src="https://ucdd331c94cc405c97edccd1cf8a.previews.dropboxusercontent.com/p/thumb/ABnYLhnupLcYBfV1MOW7XvUFYBsX62pEeElcMKhhk8JpANRkPtOwWtCLFTzh2mtQUuIJWTbHznwlCzHXDGwlt5JH6UQid-J0ge50GG7WXhmq_Zr0bKwrJ7y3N4CtrOJNE3pkbUnTiCBEjYt8hHMqlsSL3IyH-EfRaQSnlsL0ySf8VMbBAFGKeOD6GikZOF9arw4Twfvigb9F_Z1PytglHON_n581Vcr42tueHhwL-ouYonbt53UDq44V5oDnZdQ0m9ebMdDqGpZR4VTD-zAXOYpmTCDBAm6YNQGokZcRmuKEMX20xgPHNeAShN2teplx7kCYSmhS6e0FdyWQoYP37Craw9V4bus2RZQJWzYLeBkQY8hDlOSZMIHPB1gntFVZIW0oh6ndEEa9LZbTXYFp3lrtsgz_QM10dTMpDKebp6ks2Q/p.jpeg"
+                class="card-img"
+                alt="..."
+              />
+            </div>
+            <a
+              href="#"
+              class="btn btn-danger py-2 px-4 fw-bold rounded-pill text-uppercase"
+              aria-current="page"
+              data-bs-toggle="modal"
+              data-bs-target="#applyNowModal"
+              >Apply Now For Hazmat</a
+            >
+          </div>
+          <div class="col d-none">
+            <div class="mb-3">
+              <img src="" class="card-img" alt="..." />
+            </div>
+            <a
+              href="#"
+              class="btn btn-danger py-2 px-4 fw-bold rounded-pill text-uppercase"
+              aria-current="page"
+              data-bs-toggle="modal"
+              data-bs-target="#applyNowModal"
+            ></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-5 mt-5">
+      <p class="text-center fs-3 light-bold">Openings:</p>
+      <p class="text-center text-secondary">Chesapeake • Wilson • Richmond</p>
+    </section>
+
+    <section class="tagline-background">
+      <p class="text-center p-3 fs-1 fw-bold">What Our Drivers Say:</p>
+    </section>
+
+    <section class="pb-5 mb-5 pt-5">
+      <div class="container">
+        <div class="row text-center row-cols-1 row-cols-lg-3 g-4">
+          <div class="col">
+            <img
+              src="https://uc3cdd316147ec5993275ebff9e4.previews.dropboxusercontent.com/p/thumb/ABmOVh3K4Y4AeEp6Kx83neANFeASkzwWJqc9_ZWebtceVNoRWbQi6-bl2E5f6J014WeIC1CASZ6b_uSo8l5ht5i6xFts2so5sV5tPrXAPAEFOXtTOOb7vOI1xLsK0BoPjt51lOPeankviZ61xuRuS5sR7MD9MDPlvZql_RzGQzf3Md-RfvmbbjVZLKb0Wv_cs1quyIrrK9PaFBtOF6shzmL8Lyv3su3qKZ1uqvZSah0Ppa3qjOyfGHx8qC2YiuYuwGYGOua3BEIICrlfyHmTNwWW0D8IDvtNGq9srTKETbGKe_m_Mq4B1ORbal7ypF8Ajz0c6KrktZmdxSxFA7cSz5Z-8NA7XUvfetKYOzzqHFrFFF1EWL0uMx4FbCRL7Z2B6UANSev7jYIh18DC47Nw2ERrzQJ0LWUnEGswwZ_Q8HQxww/p.jpeg"
+              width="100%"
+            />
+          </div>
+          <div class="col">
+            <img
+              src="https://uc6de5ee8b3a3f0b33d8e9b8db6b.previews.dropboxusercontent.com/p/thumb/ABnk6vR_3ps-kzYFJKnHgosn_zQlouy-TZTU1EVw46lgeQSmV-tEAxvFDkxULMWG6ZF_O9-RAxVA6KQ58GLnfWhjyM8Wu_41W_-XxsHbBMgZyveypCqwVY5rguSAqUP1-mteumyBhX8AJC8WbnK_UBNor8pYZ2SQjeVj5qeIzZISdzBjxIhookMjqLCqfJOPUXAH-q066Uk0igo8nn3Ojtyg4u4M1OFhBcNA60t0FNZSlCD9yCfA-v3xfOshDO9Cul-AGecyMNC9mF8IAjiOmf4NpZ8rcoU-bR-fETNzVYh5cpLv2DT_1hjNEJs_nmZyX9sBzYFy4nmFSzfLakmoNcePXLfADIMebC_KxeB9HwH3frcUp6s-u9fG-G9AN4YEOsdbgwwM8AtLI0Rb-kBa9PWfJIrBkXMu5xbPeekyZ036bA/p.jpeg"
+              width="100%"
+            />
+          </div>
+          <div class="col">
+            <img
+              src="https://uc726bf191c5beb5138db14170f7.previews.dropboxusercontent.com/p/thumb/ABmP-4R96_I6kcP4jm2vg7xJR1_xlc8WSxe48dwRwqFx7qJQ60sSKHNiqH58-x4QTOjAo1WTxfajNVEVRczPmNauts3GCdEc3lGdAUXuuhwEwZPs8eke0dsiDB13MVX3ANOINmRB8X_cdyhkLYnNZ_-vH2nKf4YfF5N6nMAfqeYX2Ak-d45gyeRQaS4IW4fodiBPykSVtSeFMs6Tp4S_jAWfcYipTRiRpHTBDpgDGRkoUfXT7tehZeZAQ561ALPAzkn8XTpv0zRKjZl0KCjuipDp6D9sPvQjDnppt5Xbu7nMJpka6eyTVGrQR1m99CsBSfDmTYNToT-Wyd8i4A6IOYECdmHXBUlhXW5LcZKef7ONoeOctSZ0jJpI8q2pL92JAzpgTg__DhMZP7LxD7N3VA9fBr2XcoQJ6claeek_IBST3Q/p.jpeg"
+              width="100%"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-1 pb-5">
+      <div class="container">
+        <div class="row row-cols-1 row-cols-lg-2 g-4">
+          <div class="col">
+            <div class="mb-5">
+              <iframe
+                width="100%"
+                height="300px"
+                src="https://player.vimeo.com/video/694911195?h=68686c0e52&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div>
+              <!-- Text -->
+            </div>
+            <div class="pt-5">
+              <span class="fw-bold"> <!-- Name --></span>
+              <!-- Position -->
+            </div>
+          </div>
+          <div class="col">
+            <div class="mb-5">
+              <iframe
+                width="100%"
+                height="300px"
+                src="https://player.vimeo.com/video/730434754?h=cb24cefe63&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+                title="LJ Rogers Trucking - Co-Driver Testimonial"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div>
+              <!-- Text -->
+            </div>
+            <div class="pt-5">
+              <span class="fw-bold"> <!-- Name --></span>
+              <!-- Position -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tagline-background p-5">
+      <p class="text-center my-3 fs-1 fw-bolder">Ready to Apply?</p>
+      <p class="text-center my-3 pb-3">
+        Have 2 Years Experience and a Class A/B CDL?
+      </p>
+      <div class="container py-4">
+        <div class="row text-center row-cols-1 row-cols-md-1 g-4">
+          <div class="col">
+            <div>
+              <button
+                href="#"
+                class="btn btn-danger py-2 px-5 fw-bold rounded-pill text-uppercase"
+                aria-current="page"
+                data-bs-toggle="modal"
+                data-bs-target="#applyNowModal"
+              >
+                Apply Now!
+              </button>
+            </div>
+          </div>
+
+          <!-- <div class="col">
+            <div>
+              <button
+                href="#"
+                class="btn btn-danger py-2 px-4 fw-bold rounded-pill text-uppercase"
+                aria-current="page"
+                data-bs-toggle="modal"
+                data-bs-target="#applyNowModal"
+              >
+                APPLY NOW FOR TEAMS
+              </button>
+            </div>
+          </div>
+         -->
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-dark p-4"></section>
+
+    <script>
+      // Creating SlimSelect component
+      const select = new SlimSelect({
+        select: "#multiple",
+        showSearch: false,
+        closeOnSelect: false,
+        onChange(data) {
+          this.newValue = data;
+          const noneOpt = this.data.data.find(
+            (option) => option.text === "None"
+          );
+          if (this.newValue.length > 1) {
+            if (
+              this.oldValue.findIndex((option) => option.id === noneOpt.id) !==
+              -1
+            ) {
+              this.newValue.splice(
+                this.newValue.findIndex((option) => option.id === noneOpt.id),
+                1
+              );
+              this.oldValue = this.newValue;
+              this.set([this.newValue[0].value]);
+              this.open();
+              return;
+            }
+            if (this.newValue.find((option) => option.text == "None")) {
+              this.oldValue = this.newValue = [noneOpt];
+              this.set([noneOpt.value]);
+              return;
+            }
+          }
+          this.oldValue = data;
+        },
+      });
+      select.newValue = [];
+      select.oldValue = [];
+
+      // Focus on the first modal input field
+      const applyNowModal = document.getElementById("applyNowModal");
+      const firstInput = document.getElementById("fname");
+
+      applyNowModal.addEventListener("shown.bs.modal", function () {
+        firstInput.focus();
+      });
+
+      //Validation and masking helper functions
+      function validateOnSubmit(event) {
+        // Runs validation on all form input fields containing data-rules attributes
+        const form = event.target;
+
+        u(form)
+          .find("input[data-rules],select[data-rules]")
+          .each(validateField);
+        if (
+          u(form).find(
+            "input[data-rules].is-invalid,select[data-rules].is-invalid"
+          ).length !== 0
+        ) {
+          event.preventDefault();
+          u(form)
+            .find("input[data-rules].is-invalid,select[data-rules].is-invalid")
+            .first()
+            .focus();
+        }
+      }
+
+      function validateField(input) {
+        // Use data-rules attribute to specify validation rules
+        // E.g. data-rules="['required','minLength:14']"
+        const dataRules = input.dataset.rules || "[]";
+        const rules = JSON.parse(dataRules.replaceAll("'", '"'));
+        const validationResult = Iodine.assert(input.value, rules);
+
+        if (validationResult.valid !== true) {
+          u(input).addClass("is-invalid").removeClass("is-valid");
+          console.log(
+            "Validation failed for field " +
+              input.name +
+              ": " +
+              validationResult.error
+          );
+        } else {
+          u(input).addClass("is-valid").removeClass("is-invalid");
+        }
+      }
+
+      function limitKeys(event) {
+        // Use data-valid-key-regex attribute to specify regex.
+        // E.g. data-valid-key-regex="[a-zA-Z0-9@-_+~.]"
+        const regex = new RegExp(event.target.dataset.validKeyRegex || "[]");
+
+        if (!regex.test(event.key)) {
+          event.preventDefault();
+          console.log("blocked invalid input:", event.key);
+        }
+      }
+    </script>
+  </body>
+</html>
