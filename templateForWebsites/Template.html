@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>L.J. Rogers Trucking</title>
+    <title>Title</title>
 
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -27,11 +27,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.1/slimselect.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/umbrellajs"></script>
   </head>
-  
+  </head>
+
   <style>
-    .logo-img{
-      max-height: 80px;
-    }
     .tagline-background {
       background-color: #eeeeee;
     }
@@ -58,25 +56,28 @@
       <div
         class="container-fluid justify-content-sm-between justify-content-center"
       >
+      <!-- In src place the URL for the logo -->
         <img
           class="d-block mx-auto mx-sm-0 logo-img"
-          src="https://uc468c41381a48a53c3d67cbcc73.previews.dropboxusercontent.com/p/thumb/ABk0k6s47uNT-fIsZJe04bC2wU7sKwn3ojvSHyjuPYqbziMV2Ko9kSSqz5byMwoc4qj9ZFtr7AGm8ibk4xZ6c2BACJMnZ-at9wb5cYKqkPFu4wKzdO96qJNiIQf3C8WUeek1YbSWywu_FUkl2wOQHsSciwpv4VH3c3FBhja2a_PyVC-ymwQWKrEc7zQVb4g-7ivzYSMz-MZzbBM5dKxDaH9JGFM5WJ054bCGm4HLXPFRLgjweAg1GrisE_T5sqttQHaPs_43MYytabG58ahtKw-NuruzxcsyUzii7MMIBKetSELaikeG5Kyh1Qmq8uHquQpPo7Er89-axth-YZEld9Dg9JvJKrXgBq0bZBPOrMFHykYEpnVskq9bwR6Bp-2flJeqtZvrNAwT7RrfLIiawy9pAjy8N3zC5ZvcVczrICv9hQ/p.png"
+          src=""
           href="#"
+          style="max-height: 80px; max-width: 150px;"
         />
 
         <div class="d-flex mt-2">
           <button
-            class="btn btn-outline-danger rounded-pill d-none d-md-block me-2"
+            class="btn btn-outline-primary rounded-pill d-none d-md-block me-2"
           >
-            Call Now To Apply <br />(800)-849-0247
+            Call Now To Apply <br /><!-- Place number for calling (call now CTA)-->
           </button>
           <div class="my-auto">
             <button
-              class="btn btn-outline-danger active rounded-pill btn-hover"
+              class="btn btn-outline-primary active rounded-pill btn-hover"
               aria-current="page"
-              @click="$dispatch('open-form-modal')"
+              @click="$dispatch('open-form-modal');"
             >
-              Apply Now!
+            Apply Now!
+              <!-- CTA -->
             </button>
           </div>
         </div>
@@ -88,7 +89,7 @@
         class="modal fade"
         aria-labelledby="applyNowModalLabel"
         aria-hidden="true"
-        x-data
+        x-data=""
         x-init="modal = new bootstrap.Modal($el);"
         @shown-bs-modal.dot="u('input').first().focus()"
         @open-form-modal.window="modal.show()"
@@ -311,57 +312,64 @@
     </section>
 
     <section class="p-4">
-      <div class="row section" id="about">
-        <p class="text-center fs-1 fw-bolder">
-          Ready to Make a Change For <u>Stability</u>?
-        </p>
+      <div class="row section">
+        <p class="text-center fs-1 fw-bolder"><!--Headline--> <u><!-- Underlined Headline --></u><!--Punctuation --></p>
       </div>
       <div class="container">
-        <div class="row">
+        <div class="row row-cols-1 row-cols-lg-1 g-4">
           <div class="col">
-            <img src="TruckHead.png" class="round-img mx-auto d-block" />
-          </div>
+            <!-- In src place hero img url (Hero Img)-->
+              <img src="" class="card-img round-img" alt="Hero Image">
         </div>
       </div>
       <p class="text-center text-secondary pt-5">
-        L.J. Rogers is responsive, honest, and straightforward. Our mission is
-        simple: to provide safe, cost-effective, and on-time freight deliveries.
+        <!--Subheadline -->
       </p>
     </section>
 
     <section class="p-2 positions-section">
       <p class="text-center fs-3 fw-bolder pb-3">
-        Start Your Application By Using the Buttons Below:
+        <!-- Subheadline -->
       </p>
       <div class="container">
         <div class="row text-center row-cols-1 row-cols-lg-2 g-4">
           <div class="col">
             <div class="mb-3">
-              <img src="TruckReg.jpg" class="card-img" alt="..." />
-            </div>
-            <a
-              href="#"
-              class="btn btn-danger py-2 px-4 fw-bold rounded-pill text-uppercase"
-              aria-current="page"
-              data-bs-toggle="modal"
-              data-bs-target="#applyNowModal"
-              >Apply Now For Regional</a
-            >
-          </div>
-          <div class="col">
-            <div class="mb-3">
-              <img src="TruckTeams.webp" class="card-img" alt="..." />
+                <!-- In src place img1 url for applying -->
+              <img
+                src=""
+                class="card-img"
+                alt="..."
+              />
             </div>
             <a
               href="#"
               class="btn btn-danger py-2 px-4 fw-bold rounded-pill text-uppercase"
               aria-current="page"
               @click="$dispatch('open-form-modal');"
-              >Apply Now For Teams</a
+              ><!--button for img1. Place what people are applying for. --></a
+            >
+          </div>
+          <div class="col">
+            <div class="mb-3">
+                <!-- In src place img2 url for applying -->
+              <img
+                src=""
+                class="card-img"
+                alt="..."
+              />
+            </div>
+            <a
+              href="#"
+              class="btn btn-danger py-2 px-4 fw-bold rounded-pill text-uppercase"
+              aria-current="page"
+              @click="$dispatch('open-form-modal');"
+              ><!--button for img2. Place what people are applying for. --></a
             >
           </div>
           <div class="col d-none">
             <div class="mb-3">
+                <!-- In src place img3 url for applying -->
               <img src="" class="card-img" alt="..." />
             </div>
             <a
@@ -369,37 +377,44 @@
               class="btn btn-danger py-2 px-4 fw-bold rounded-pill text-uppercase"
               aria-current="page"
               @click="$dispatch('open-form-modal');"
-            ></a>
+            ><!--button for img3. Place what people are applying for. --></a>
           </div>
         </div>
       </div>
     </section>
 
     <section class="p-5 mt-5">
-      <p class="text-center fs-3 light-bold">Openings:</p>
-      <p class="text-center text-secondary">
-        Durham • Raleigh • Wake Forest • Chapel Hill • Greensboro • High Point •
-        Oxford • Sanford • Asheboro • Madison • Blairs
-      </p>
+      <p class="text-center fs-3 light-bold"><!--Openings:--></p>
+      <p class="text-center text-secondary"><!--locations for openings --></p>
     </section>
 
     <section class="tagline-background">
-      <p class="text-center p-3 fs-1 fw-bold">
-        70% Driver Retention Rate for Good Reason!
-      </p>
+      <p class="text-center p-3 fs-1 fw-bold"><!--Headline --></p>
     </section>
 
     <section class="pb-5 mb-5 pt-5">
       <div class="container">
         <div class="row text-center row-cols-1 row-cols-lg-3 g-4">
           <div class="col">
-            <img src="1.webp" width="100%" />
+            <!--Testimonial Image 1. Place img url in src -->
+            <img
+              src=""
+              class="img-fluid"
+            />
           </div>
           <div class="col">
-            <img src="2.webp" width="100%" />
+            <!--Testimonial Image 2. Place img url in src -->
+            <img
+              src=""
+              class="img-fluid"
+            />
           </div>
           <div class="col">
-            <img src="3.webp" width="100%" />
+            <!--Testimonial Image 3. Place img url in src -->
+            <img
+              src=""
+              class="img-fluid"
+            />
           </div>
         </div>
       </div>
@@ -409,46 +424,41 @@
       <div class="container">
         <div class="row row-cols-1 row-cols-lg-2 g-4">
           <div class="col">
-            <div class="mb-5">
+            <div class="mb-5 ratio ratio-16x9">
+                <!-- Video1. Place video url in src -->
               <iframe
-                width="100%"
-                height="300px"
-                src="https://www.youtube.com/embed/s2Yidl8D3qQ"
+                src=""
                 title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen
               ></iframe>
             </div>
-            <div>
-              "You can walk into anyone's office - no locked doors. You can talk
-              to anybody at LJ Rogers. It's like a family here. You don't ever
-              need to give them your truck number, they know you by name."
+            <div class="d-none">
+              <!-- Driver quote -->
             </div>
-            <div class="pt-5">
-              <span class="fw-bold">Mike Easly,</span> Regional Driver
+            <div class="pt-5 d-none">
+              <span class="fw-bold"> <!-- Name --></span>
+              <!-- Position -->
             </div>
           </div>
           <div class="col">
-            <div class="mb-5">
+            <div class="mb-5 ratio ratio-16x9">
+                <!-- Video2. Place video url in src -->
               <iframe
-                width="100%"
-                height="300px"
-                src="https://www.youtube.com/embed/nXVriFVy5vQ"
+                src=""
                 title="LJ Rogers Trucking - Co-Driver Testimonial"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen
               ></iframe>
             </div>
-            <div>
-              "I know when I'm leaving, I know when I'm getting back within
-              reason. I can plan out my life. I look forward to going out and
-              coming back home. I run my schedule, I come back and they leave me
-              alone. They provide stability with a scheduled run."
+            <div class="d-none">
+              <!-- Driver quote -->
             </div>
-            <div class="pt-5">
-              <span class="fw-bold">John Hagy,</span> West Coast Teams Driver
+            <div class="pt-5 d-none">
+              <span class="fw-bold"> <!-- Name --></span>
+              <!-- Position -->
             </div>
           </div>
         </div>
@@ -456,36 +466,40 @@
     </section>
 
     <section class="tagline-background p-5">
-      <p class="text-center my-3 fs-1 fw-bolder">Ready to Apply?</p>
+      <p class="text-center my-3 fs-1 fw-bolder"><!-- Headline --></p>
       <p class="text-center my-3 pb-3">
-        With 24/7/365 dispatch services, we're always here to help our drivers!
+        <!-- Subheadline -->
       </p>
       <div class="container py-4">
-        <div class="row text-center row-cols-1 row-cols-md-2 g-4">
+        <div class="row text-center row-cols-1 row-cols-md-1 g-4">
           <div class="col">
             <div>
               <button
                 href="#"
-                class="btn btn-danger py-2 px-4 fw-bold rounded-pill text-uppercase"
+                class="btn btn-danger py-2 px-5 fw-bold rounded-pill text-uppercase"
                 aria-current="page"
-                @click="$dispatch('open-form-modal');"
+                data-bs-toggle="modal"
+                data-bs-target="#applyNowModal"
               >
-                Apply Now For Regional
+                <!-- CTA Button 1 -->
               </button>
             </div>
           </div>
-          <div class="col">
-            <div>
+
+
+            <!-- <div>
               <button
                 href="#"
                 class="btn btn-danger py-2 px-4 fw-bold rounded-pill text-uppercase"
                 aria-current="page"
-                @click="$dispatch('open-form-modal');"
+                data-bs-toggle="modal"
+                data-bs-target="#applyNowModal"
               >
                 APPLY NOW FOR TEAMS
               </button>
             </div>
-          </div>
+          </div> -->
+
         </div>
       </div>
     </section>
@@ -528,6 +542,14 @@
       });
       select.newValue = [];
       select.oldValue = [];
+
+      // // Focus on the first modal input field
+      // const applyNowModal = document.getElementById("applyNowModal");
+      // const firstInput = document.getElementById("fname");
+
+      // applyNowModal.addEventListener("shown.bs.modal", function () {
+      //   firstInput.focus();
+      // });
 
       //Validation and masking helper functions
       function validateOnSubmit(event) {
