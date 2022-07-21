@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.1/slimselect.min.css" rel="stylesheet"/>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/@kingshott/iodine@8.0.0/dist/iodine.min.umd.js" defer></script>
+    <script src="https://unpkg.com/@alpinejs/mask@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.1/slimselect.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/umbrellajs"></script>
+  </head>
+  </head>
+
+  <style>
+    .tagline-background {
+      background-color: #eeeeee;
+    }
+    .light-bold {
+      font-weight: 600;
+    }
+    .small-text {
+      font-size: 10px;
+    }
+    .round-img {
+      border-radius: 30px;
+    }
+    .positions-section img {
+      width: 100%;
+      object-fit: contain;
+    }
+    .ss-main .ss-multi-selected {
+      padding: 5px;
+    }
+  </style>
+
+  <body x-data>
+    <nav class="navbar navbar-expand-md navbar-light sticky-top bg-light">
+      <div
+        class="container-fluid justify-content-sm-between justify-content-center"
+      >
+      <!-- In src place the URL for the logo -->
+        <img
+          class="d-block mx-auto mx-sm-0 logo-img"
+          src=""
+          href="#"
+          style="max-height: 80px; max-width: 150px;"
+        />
+
+        <div class="d-flex mt-2">
+          <button
+            class="btn btn-outline-primary rounded-pill d-none d-md-block me-2"
+          >
+            Call Now To Apply <br /><!-- Place number for calling (call now CTA)-->
+          </button>
+          <div class="my-auto">
+            <button
+              class="btn btn-outline-primary active rounded-pill btn-hover"
+              aria-current="page"
+              @click="$dispatch('open-form-modal');"
+            >
+            Apply Now!
+              <!-- CTA -->
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section>
+      <div
+        class="modal fade"
+        aria-labelledby="applyNowModalLabel"
+        aria-hidden="true"
+        x-data=""
+        x-init="modal = new bootstrap.Modal($el);"
+        @shown-bs-modal.dot="u('input').first().focus()"
+        @open-form-modal.window="modal.show()"
+        @close-form-modal.window="modal.hide()"        
+      >
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Apply Now</h5>
+              <button
+                type="button"
+                class="btn-close"
+                @click="$dispatch('close-form-modal')"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form
+                action="#"
+                method="POST"
+                novalidate
+                x-data=""
+                @submit="validateOnSubmit"
+              >
+              <div class="container">
+                <div class="row text-center row-cols-1 row-cols-lg-2 g-4">
+                <div class="mb-3 col">
+                  <label for="First-Name">First Name:</label>
+                  <input
+                    placeholder="First Name"
+                    class="form-control"
+                    name="fname"
+                    data-rules="['required']"
+                    @blur="validateField($el)"
+                  />
+                  <div class="invalid-feedback">First Name is required.</div>
+                </div>
+                <div class="mb-3">
+                  <label for="Last-Name">Last Name:</label>
+                  <input
+                    placeholder="last Name"
+                    class="form-control"
+                    name="lname"
+                    data-rules="['required']"
+                    @blur="validateField($el)"
+                  />
+                  <div class="invalid-feedback">Last Name is required.</div>
+                </div>
+                <div class="mb-3">
+                  <label for="Zip">Zip:</label>
+                  <input
+                    placeholder="Zip Code"
+                    class="form-control"
+                    type="text"
+                    name="zip"
+                    data-rules="['required','minLength:4','maxLength:5']"
+                    @blur="validateField($el)"
+                    x-mask="99999"
+                  />
+                  <div class="invalid-feedback">
+                    Please enter a 5 digit zip code.
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="email">Email:</label>
+                  <input
+                    placeholder="Email"
+                    class="form-control"
+                    type="email"
+                    name="email"
+                    @keydown="limitKeys"
+                    data-valid-key-regex="[a-zA-Z0-9@-_+~.]"
+                    data-rules="['required','email']"
+                    @blur="validateField($el)"
+                  />
+                  <div class="invalid-feedback">
+                    Please enter a valid email address.
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="phone">Enter your phone number:</label>
+                  <input
+                    placeholder="Phone Number"
+                    class="form-control"
+                    type="tel"
+                    name="phone"
+                    data-rules="['required','minLength:14']"
+                    @blur="validateField($el)"
+                    x-mask="(999) 999-9999"
+                  />
+                  <div class="invalid-feedback">
+                    Please enter a valid phone number.
+                  </div>
+                </div>
+                <div class=" mb-3">
+                  <label for="communication">Perfered Communication Method:</label>
+                  <select
+                    class="form-select"
+                    data-rules="['required', 'minLength:1']"
+                  >
+                    <option value="" selected disabled>
+                      Open this select menu
+                    </option>
+                    <option value="Phone">Phone</option>
+                    <option value="Email">Email</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Please choose a perfered method of communication.
+                  </div>
+                </div>
+                <div class=" mb-3">
+                  <label>How much CDL-A Experience?</label>
+                  <select
+                    class="form-select"
+                    data-rules="['required', 'minLength:1']"
+                  >
+                    <option value="" selected disabled>
+                      Open this select menu
+                    </option>
+                    <option value="None">None</option>
+                    <option value="CDL Grad School">CDL Grad School</option>
+                    <option value="CDL Grad">CDL Grad</option>
+                    <option value="5 months">1-5 months</option>
+                    <option value="11 months">6-11 months</option>
+                    <option value="1 Year">1 Year</option>
+                    <option value="2 Years">2 Years</option>
+                    <option value="3 Years">3 Years</option>
+                    <option value="4 Year">4 Year</option>
+                    <option value="5 Years">5+ Years</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Please describe your experience.
+                  </div>
+                </div>
+                <div class=" mb-3">
+                  <label>How did you hear about us?</label>
+                  <select
+                    class="form-select"
+                    data-rules="['required', 'minLength:1']"
+                  >
+                    <option value="" selected disabled>
+                      Open this select menu
+                    </option>
+                    <option value="0">Friend/Relative</option>
+                    <option value="1">Social Media</option>
+                    <option value="2">Job Posting Site</option>
+                    <option value="3">Referral</option>
+                    <option value="4">Advertisment</option>
+                    <option value="5">Search Engine</option>
+                    <option value="24">Other</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Please tell us how you head about us.
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label
+                    >Do you have any endorsements? <span class="text-muted small-text">Please select all that apply</span>
+                    </label
+                  >
+                  <select
+                    id="multiple"
+                    data-rules="['required', 'minLength:1']"
+                    multiple
+                  >
+                    <option value="1">None</option>
+                    <option value="2">
+                      Combination of Tank Vehicles and Hazrdous Materials
+                    </option>
+                    <option value="3">Double/Triple Trailers</option>
+                    <option value="4">Hazrdous Materials</option>
+                    <option value="5">Tank Vehicles</option>
+                    <option value="6">Passenger</option>
+                    <option value="7">School Bus</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Please select endoresements.
+                  </div>
+                </div>
+                <div class=" mb-3">
+                  <label for="TWIC">TWIC Card?</label>
+                  <select
+                    class="form-select"
+                    data-rules="['required', 'minLength:1']"
+                  >
+                    <option value="" selected disabled>
+                      Open this select menu
+                    </option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Please describe option.
+                  </div>
+                </div>
+              </div>
+              <div class="my-4">
+                <div class="text-secondary small-text">
+                  By providing my phone number and clicking the button below,
+                  I agree to the Terms & Conditions and Privacy Policy,
+                  provide my electronic signature, and consent to receive
+                  automated marketing calls or text messages (e.g.,
+                  prerecorded and/or autodialed calls), regardless of any
+                  previous registration on any company, State or National Do
+                  Not Call list, and emails from ______ and AvatarFleet LLC.
+                  You may opt out any time. Message & data rates may apply.
+                </div>
+              </div>
+              <div class="d-grid justify-content-end">
+                <button type="submit" value="SUBMIT" class="btn btn-primary px-5">
+                  Submit
+                </button>
+              </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-4">
+      <div class="row section">
+        <p class="text-center fs-1 fw-bolder"><!--Headline--> <u><!-- Underlined Headline --></u><!--Punctuation --></p>
+      </div>
+      <div class="container">
+        <div class="row row-cols-1 row-cols-lg-1 g-4">
+          <div class="col">
+            <!-- In src place hero img url (Hero Img)-->
+              <img src="" class="card-img round-img" alt="Hero Image">
+        </div>
+      </div>
+      <p class="text-center text-secondary pt-5">
+        <!--Subheadline -->
+      </p>
+    </section>
+
+    <section class="p-2 positions-section">
+      <p class="text-center fs-3 fw-bolder pb-3">
+        <!-- Subheadline -->
+      </p>
+      <div class="container">
+        <div class="row text-center row-cols-1 row-cols-lg-2 g-4">
+          <div class="col">
+            <div class="mb-3">
+                <!-- In src place img1 url for applying -->
+              <img
+                src=""
+                class="card-img"
+                alt="..."
+              />
+            </div>
+            <a
+              href="#"
+              class="btn btn-danger py-2 px-4 fw-bold rounded-pill text-uppercase"
+              aria-current="page"
+              @click="$dispatch('open-form-modal');"
+              ><!--button for img1. Place what people are applying for. --></a
+            >
+          </div>
+          <div class="col">
+            <div class="mb-3">
+                <!-- In src place img2 url for applying -->
+              <img
+                src=""
+                class="card-img"
+                alt="..."
+              />
+            </div>
+            <a
+              href="#"
+              class="btn btn-danger py-2 px-4 fw-bold rounded-pill text-uppercase"
+              aria-current="page"
+              @click="$dispatch('open-form-modal');"
+              ><!--button for img2. Place what people are applying for. --></a
+            >
+          </div>
+          <div class="col d-none">
+            <div class="mb-3">
+                <!-- In src place img3 url for applying -->
+              <img src="" class="card-img" alt="..." />
+            </div>
+            <a
+              href="#"
+              class="btn btn-danger py-2 px-4 fw-bold rounded-pill text-uppercase"
+              aria-current="page"
+              @click="$dispatch('open-form-modal');"
+            ><!--button for img3. Place what people are applying for. --></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-5 mt-5">
+      <p class="text-center fs-3 light-bold"><!--Openings:--></p>
+      <p class="text-center text-secondary"><!--locations for openings --></p>
+    </section>
+
+    <section class="tagline-background">
+      <p class="text-center p-3 fs-1 fw-bold"><!--Headline --></p>
+    </section>
+
+    <section class="pb-5 mb-5 pt-5">
+      <div class="container">
+        <div class="row text-center row-cols-1 row-cols-lg-3 g-4">
+          <div class="col">
+            <!--Testimonial Image 1. Place img url in src -->
+            <img
+              src=""
+              class="img-fluid"
+            />
+          </div>
+          <div class="col">
+            <!--Testimonial Image 2. Place img url in src -->
+            <img
+              src=""
+              class="img-fluid"
+            />
+          </div>
+          <div class="col">
+            <!--Testimonial Image 3. Place img url in src -->
+            <img
+              src=""
+              class="img-fluid"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-1 pb-5">
+      <div class="container">
+        <div class="row row-cols-1 row-cols-lg-2 g-4">
+          <div class="col">
+            <div class="mb-5 ratio ratio-16x9">
+                <!-- Video1. Place video url in src -->
+              <iframe
+                src=""
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div class="d-none">
+              <!-- Driver quote -->
+            </div>
+            <div class="pt-5 d-none">
+              <span class="fw-bold"> <!-- Name --></span>
+              <!-- Position -->
+            </div>
+          </div>
+          <div class="col">
+            <div class="mb-5 ratio ratio-16x9">
+                <!-- Video2. Place video url in src -->
+              <iframe
+                src=""
+                title="LJ Rogers Trucking - Co-Driver Testimonial"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div class="d-none">
+              <!-- Driver quote -->
+            </div>
+            <div class="pt-5 d-none">
+              <span class="fw-bold"> <!-- Name --></span>
+              <!-- Position -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tagline-background p-5">
+      <p class="text-center my-3 fs-1 fw-bolder"><!-- Headline --></p>
+      <p class="text-center my-3 pb-3">
+        <!-- Subheadline -->
+      </p>
+      <div class="container py-4">
+        <div class="row text-center row-cols-1 row-cols-md-1 g-4">
+          <div class="col">
+            <div>
+              <button
+                href="#"
+                class="btn btn-danger py-2 px-5 fw-bold rounded-pill text-uppercase"
+                aria-current="page"
+                data-bs-toggle="modal"
+                data-bs-target="#applyNowModal"
+              >
+                <!-- CTA Button 1 -->
+              </button>
+            </div>
+          </div>
+
+
+            <!-- <div>
+              <button
+                href="#"
+                class="btn btn-danger py-2 px-4 fw-bold rounded-pill text-uppercase"
+                aria-current="page"
+                data-bs-toggle="modal"
+                data-bs-target="#applyNowModal"
+              >
+                APPLY NOW FOR TEAMS
+              </button>
+            </div>
+          </div> -->
+
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-dark p-4"></section>
+
+    <script>
+      // Creating SlimSelect component
+      const select = new SlimSelect({
+        select: "#multiple",
+        showSearch: false,
+        closeOnSelect: false,
+        onChange(data) {
+          this.newValue = data;
+          const noneOpt = this.data.data.find(
+            (option) => option.text === "None"
+          );
+          if (this.newValue.length > 1) {
+            if (
+              this.oldValue.findIndex((option) => option.id === noneOpt.id) !==
+              -1
+            ) {
+              this.newValue.splice(
+                this.newValue.findIndex((option) => option.id === noneOpt.id),
+                1
+              );
+              this.oldValue = this.newValue;
+              this.set([this.newValue[0].value]);
+              this.open();
+              return;
+            }
+            if (this.newValue.find((option) => option.text == "None")) {
+              this.oldValue = this.newValue = [noneOpt];
+              this.set([noneOpt.value]);
+              return;
+            }
+          }
+          this.oldValue = data;
+        },
+      });
+      select.newValue = [];
+      select.oldValue = [];
+
+      // // Focus on the first modal input field
+      // const applyNowModal = document.getElementById("applyNowModal");
+      // const firstInput = document.getElementById("fname");
+
+      // applyNowModal.addEventListener("shown.bs.modal", function () {
+      //   firstInput.focus();
+      // });
+
+      //Validation and masking helper functions
+      function validateOnSubmit(event) {
+        // Runs validation on all form input fields containing data-rules attributes
+        const form = event.target;
+
+        u(form)
+          .find("input[data-rules],select[data-rules]")
+          .each(validateField);
+        if (
+          u(form).find(
+            "input[data-rules].is-invalid,select[data-rules].is-invalid"
+          ).length !== 0
+        ) {
+          event.preventDefault();
+          u(form)
+            .find("input[data-rules].is-invalid,select[data-rules].is-invalid")
+            .first()
+            .focus();
+        }
+      }
+
+      function validateField(input) {
+        // Use data-rules attribute to specify validation rules
+        // E.g. data-rules="['required','minLength:14']"
+        const dataRules = input.dataset.rules || "[]";
+        const rules = JSON.parse(dataRules.replaceAll("'", '"'));
+        const validationResult = Iodine.assert(input.value, rules);
+
+        if (validationResult.valid !== true) {
+          u(input).addClass("is-invalid").removeClass("is-valid");
+          console.log(
+            "Validation failed for field " +
+              input.name +
+              ": " +
+              validationResult.error
+          );
+        } else {
+          u(input).addClass("is-valid").removeClass("is-invalid");
+        }
+      }
+
+      function limitKeys(event) {
+        // Use data-valid-key-regex attribute to specify regex.
+        // E.g. data-valid-key-regex="[a-zA-Z0-9@-_+~.]"
+        const regex = new RegExp(event.target.dataset.validKeyRegex || "[]");
+
+        if (!regex.test(event.key)) {
+          event.preventDefault();
+          console.log("blocked invalid input:", event.key);
+        }
+      }
+    </script>
+  </body>
+</html>
