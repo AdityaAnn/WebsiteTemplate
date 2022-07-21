@@ -51,8 +51,8 @@
     }
   </style>
 
-  <body x-data>
-    <nav class="navbar navbar-expand-md navbar-light sticky-top bg-light">
+  <body x-data class="bg-dark">
+    <nav class="navbar navbar-expand-md navbar-light sticky-top">
       <div
         class="container-fluid justify-content-sm-between justify-content-center"
       >
@@ -66,13 +66,13 @@
 
         <div class="d-flex mt-2">
           <button
-            class="btn btn-outline-primary rounded-pill d-none d-md-block me-2"
+            class="btn btn-outline-danger rounded-pill d-none d-md-block me-2"
           >
             Call Now To Apply <br /><!-- Place number for calling (call now CTA)-->
           </button>
           <div class="my-auto">
             <button
-              class="btn btn-outline-primary active rounded-pill btn-hover"
+              class="btn btn-outline-danger active rounded-pill btn-hover"
               aria-current="page"
               @click="$dispatch('open-form-modal');"
             >
@@ -311,176 +311,35 @@
       </div>
     </section>
 
-    <section class="p-4">
+    <section class="p-4 pt-5">
       <div class="row section">
         <p class="text-center fs-1 fw-bolder"><!--Headline--> <u><!-- Underlined Headline --></u><!--Punctuation --></p>
       </div>
       <div class="container">
-        <div class="row row-cols-1 row-cols-lg-1 g-4">
+        <div class="row row-cols-lg-1 g-4">
           <div class="col">
             <!-- In src place hero img url (Hero Img)-->
-              <img src="" class="card-img round-img" alt="Hero Image">
-        </div>
-      </div>
-      <p class="text-center text-secondary pt-5">
-        <!--Subheadline -->
-      </p>
-    </section>
-
-    <section class="p-2 positions-section">
-      <p class="text-center fs-3 fw-bolder pb-3">
-        <!-- Subheadline -->
-      </p>
-      <div class="container">
-        <div class="row text-center row-cols-1 row-cols-lg-2 g-4">
-          <div class="col">
-            <div class="mb-3">
-                <!-- In src place img1 url for applying -->
-              <img
-                src=""
-                class="card-img"
-                alt="..."
-              />
-            </div>
-            <a
-              href="#"
-              class="btn btn-danger py-2 px-4 fw-bold rounded-pill text-uppercase"
-              aria-current="page"
-              @click="$dispatch('open-form-modal');"
-              ><!--button for img1. Place what people are applying for. --></a
-            >
-          </div>
-          <div class="col">
-            <div class="mb-3">
-                <!-- In src place img2 url for applying -->
-              <img
-                src=""
-                class="card-img"
-                alt="..."
-              />
-            </div>
-            <a
-              href="#"
-              class="btn btn-danger py-2 px-4 fw-bold rounded-pill text-uppercase"
-              aria-current="page"
-              @click="$dispatch('open-form-modal');"
-              ><!--button for img2. Place what people are applying for. --></a
-            >
-          </div>
-          <div class="col d-none">
-            <div class="mb-3">
-                <!-- In src place img3 url for applying -->
-              <img src="" class="card-img" alt="..." />
-            </div>
-            <a
-              href="#"
-              class="btn btn-danger py-2 px-4 fw-bold rounded-pill text-uppercase"
-              aria-current="page"
-              @click="$dispatch('open-form-modal');"
-            ><!--button for img3. Place what people are applying for. --></a>
-          </div>
+              <img src="https://puryeartanklines.com/wp-content/uploads/2021/11/puryear-white.svg" class="card-img round-img" alt="Hero Image">
         </div>
       </div>
     </section>
 
-    <section class="p-5 mt-5">
-      <p class="text-center fs-3 light-bold"><!--Openings:--></p>
-      <p class="text-center text-secondary"><!--locations for openings --></p>
-    </section>
-
-    <section class="tagline-background">
-      <p class="text-center p-3 fs-1 fw-bold"><!--Headline --></p>
-    </section>
-
-    <section class="pb-5 mb-5 pt-5">
-      <div class="container">
-        <div class="row text-center row-cols-1 row-cols-lg-3 g-4">
-          <div class="col">
-            <!--Testimonial Image 1. Place img url in src -->
-            <img
-              src=""
-              class="img-fluid"
-            />
-          </div>
-          <div class="col">
-            <!--Testimonial Image 2. Place img url in src -->
-            <img
-              src=""
-              class="img-fluid"
-            />
-          </div>
-          <div class="col">
-            <!--Testimonial Image 3. Place img url in src -->
-            <img
-              src=""
-              class="img-fluid"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="p-1 pb-5">
-      <div class="container">
-        <div class="row row-cols-1 row-cols-lg-2 g-4">
-          <div class="col">
-            <div class="mb-5 ratio ratio-16x9">
-                <!-- Video1. Place video url in src -->
-              <iframe
-                src=""
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe>
-            </div>
-            <div class="d-none">
-              <!-- Driver quote -->
-            </div>
-            <div class="pt-5 d-none">
-              <span class="fw-bold"> <!-- Name --></span>
-              <!-- Position -->
-            </div>
-          </div>
-          <div class="col">
-            <div class="mb-5 ratio ratio-16x9">
-                <!-- Video2. Place video url in src -->
-              <iframe
-                src=""
-                title="LJ Rogers Trucking - Co-Driver Testimonial"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe>
-            </div>
-            <div class="d-none">
-              <!-- Driver quote -->
-            </div>
-            <div class="pt-5 d-none">
-              <span class="fw-bold"> <!-- Name --></span>
-              <!-- Position -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="tagline-background p-5">
+    <section>
       <p class="text-center my-3 fs-1 fw-bolder"><!-- Headline --></p>
       <p class="text-center my-3 pb-3">
         <!-- Subheadline -->
       </p>
-      <div class="container py-4">
-        <div class="row text-center row-cols-1 row-cols-md-1 g-4">
+      <div class="container py-4 ">
+        <div class="row text-center row-cols-md-1 g-4">
           <div class="col">
             <div>
               <button
                 href="#"
-                class="btn btn-danger py-2 px-5 fw-bold rounded-pill text-uppercase"
+                class="btn btn-danger py-3 px-5 fw-bold rounded-pill text-uppercase"
                 aria-current="page"
                 @click="$dispatch('open-form-modal');"
               >
-                <!-- CTA Button 1 -->
+                Apply Now!
               </button>
             </div>
           </div>
@@ -501,8 +360,6 @@
         </div>
       </div>
     </section>
-
-    <section class="bg-dark p-4"></section>
 
     <script>
       // Creating SlimSelect component
