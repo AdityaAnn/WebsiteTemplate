@@ -124,9 +124,9 @@
                 @submit="validateOnSubmit"
               >
                 <div class="container">
-                  <div class="row text-center row-cols-1 row-cols-lg-2 g-4">
+                  <div class="row row-cols-1 row-cols-lg-2 g-4">
                     <div class="mb-3 col">
-                      <label for="First-Name">First Name:</label>
+                      <label for="First-Name">First Name</label>
                       <input
                         placeholder="First Name"
                         class="form-control"
@@ -139,9 +139,9 @@
                       </div>
                     </div>
                     <div class="mb-3">
-                      <label for="Last-Name">Last Name:</label>
+                      <label for="Last-Name">Last Name</label>
                       <input
-                        placeholder="last Name"
+                        placeholder="Last Name"
                         class="form-control"
                         name="lname"
                         data-rules="['required']"
@@ -150,7 +150,7 @@
                       <div class="invalid-feedback">Last Name is required.</div>
                     </div>
                     <div class="mb-3">
-                      <label for="Zip">Zip:</label>
+                      <label for="Zip">Zip</label>
                       <input
                         placeholder="Zip Code"
                         class="form-control"
@@ -165,7 +165,7 @@
                       </div>
                     </div>
                     <div class="mb-3">
-                      <label for="email">Email:</label>
+                      <label for="email">Email</label>
                       <input
                         placeholder="Email"
                         class="form-control"
@@ -181,7 +181,7 @@
                       </div>
                     </div>
                     <div class="mb-3">
-                      <label for="phone">Enter your phone number:</label>
+                      <label for="phone">Enter your phone number</label>
                       <input
                         placeholder="Phone Number"
                         class="form-control"
@@ -204,7 +204,7 @@
                         data-rules="['required', 'minLength:1']"
                       >
                         <option value="" selected disabled>
-                          Open this select menu
+                          Please Select...
                         </option>
                         <option value="Phone">Phone</option>
                         <option value="Email">Email</option>
@@ -220,7 +220,7 @@
                         data-rules="['required', 'minLength:1']"
                       >
                         <option value="" selected disabled>
-                          Open this select menu
+                          Please Select...
                         </option>
                         <option value="None">None</option>
                         <option value="CDL Grad School">CDL Grad School</option>
@@ -244,7 +244,7 @@
                         data-rules="['required', 'minLength:1']"
                       >
                         <option value="" selected disabled>
-                          Open this select menu
+                          Please Select...
                         </option>
                         <option value="0">Friend/Relative</option>
                         <option value="1">Social Media</option>
@@ -259,12 +259,7 @@
                       </div>
                     </div>
                     <div class="mb-3">
-                      <label
-                        >Do you have any endorsements?
-                        <span class="text-muted small-text"
-                          >Please select all that apply</span
-                        >
-                      </label>
+                      <label>Endorsements</label>
                       <select
                         id="multiple"
                         data-rules="['required', 'minLength:1']"
@@ -291,7 +286,7 @@
                         data-rules="['required', 'minLength:1']"
                       >
                         <option value="" selected disabled>
-                          Open this select menu
+                          Please Select...
                         </option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
@@ -526,6 +521,7 @@
         select: "#multiple",
         showSearch: false,
         closeOnSelect: false,
+        placeholder: "Select All That Apply...",
         onChange(data) {
           this.newValue = data;
           const noneOpt = this.data.data.find(
@@ -556,14 +552,6 @@
       });
       select.newValue = [];
       select.oldValue = [];
-
-      // // Focus on the first modal input field
-      // const applyNowModal = document.getElementById("applyNowModal");
-      // const firstInput = document.getElementById("fname");
-
-      // applyNowModal.addEventListener("shown.bs.modal", function () {
-      //   firstInput.focus();
-      // });
 
       //Validation and masking helper functions
       function validateOnSubmit(event) {
