@@ -362,7 +362,7 @@
           <div class="col">
             <div class="mb-3">
               <img
-                src="https://uccbee25c834c8a71b69f4e46fe4.previews.dropboxusercontent.com/p/thumb/ABnPRvR48U4o93kW_DRFqdMO3ikUy0qdabtveLem1b3DovBQG1vtFqcBBdorGWQuDLpxvBAe4AEcUO9pObgH3adPzFVxJQKuxMDSplLOq35Rfz5XUfy-xyvhzuSxUrtI6A5vSFWqJbixSBmFDpR8HaEOkRRBd2X3dwqoS86_druHpHSAUtSF3B1cL6nGuIL4Rw4MooLkVRdKNTHDaeyDX7PDaCDA0NgTnR-FKlP43KnWUidbr80BRCUbCDLVNF_SfiKXFGcPEyV047tsEW2Ls1OEgMMDQpWlxJdZivGKaJpf0XtqIJ7mf8t2Nva7cPZJ1k0Qlh0sGYa1bkh36z0bt9O5yZjjs-uyShX36S5o_ys9KrFChnjUcleWgCbl-DaoJGsP45yfIP7Kacwo4Bo2hQQ-EPayOrXYOB1TWPeToVaASA/p.jpeg"
+                src="https://ucarecdn.com/f9c19981-5fd3-42c7-a59b-2a6e7b36a6ad/-/crop/16:9/center/"
                 class="card-img"
                 alt="..."
               />
@@ -378,7 +378,7 @@
           <div class="col">
             <div class="mb-3">
               <img
-                src="https://ucdd331c94cc405c97edccd1cf8a.previews.dropboxusercontent.com/p/thumb/ABnYLhnupLcYBfV1MOW7XvUFYBsX62pEeElcMKhhk8JpANRkPtOwWtCLFTzh2mtQUuIJWTbHznwlCzHXDGwlt5JH6UQid-J0ge50GG7WXhmq_Zr0bKwrJ7y3N4CtrOJNE3pkbUnTiCBEjYt8hHMqlsSL3IyH-EfRaQSnlsL0ySf8VMbBAFGKeOD6GikZOF9arw4Twfvigb9F_Z1PytglHON_n581Vcr42tueHhwL-ouYonbt53UDq44V5oDnZdQ0m9ebMdDqGpZR4VTD-zAXOYpmTCDBAm6YNQGokZcRmuKEMX20xgPHNeAShN2teplx7kCYSmhS6e0FdyWQoYP37Craw9V4bus2RZQJWzYLeBkQY8hDlOSZMIHPB1gntFVZIW0oh6ndEEa9LZbTXYFp3lrtsgz_QM10dTMpDKebp6ks2Q/p.jpeg"
+                src="https://ucarecdn.com/920a08d6-07ca-4757-aa18-c2be0c69fe0a/-/crop/16:9/center/"
                 class="card-img"
                 alt="..."
               />
@@ -399,8 +399,7 @@
               href="#"
               class="btn btn-primary py-2 px-4 fw-bold rounded-pill text-uppercase"
               aria-current="page"
-              data-bs-toggle="modal"
-              data-bs-target="#applyNowModal"
+              @click="$dispatch('open-form-modal');"
             ></a>
           </div>
         </div>
@@ -497,26 +496,12 @@
                 href="#"
                 class="btn btn-primary py-2 px-5 fw-bold rounded-pill text-uppercase"
                 aria-current="page"
-                data-bs-toggle="modal"
-                data-bs-target="#applyNowModal"
+                @click="$dispatch('open-form-modal');"
               >
                 Apply Now!
               </button>
             </div>
           </div>
-
-          <!-- <div>
-              <button
-                href="#"
-                class="btn btn-primary py-2 px-4 fw-bold rounded-pill text-uppercase"
-                aria-current="page"
-                data-bs-toggle="modal"
-                data-bs-target="#applyNowModal"
-              >
-                APPLY NOW FOR TEAMS
-              </button>
-            </div>
-          </div> -->
         </div>
       </div>
     </section>
