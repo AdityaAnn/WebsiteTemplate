@@ -72,7 +72,7 @@
       >
         <img
           class="d-block mx-auto mx-sm-0 logo-img"
-          src="https://uc468c41381a48a53c3d67cbcc73.previews.dropboxusercontent.com/p/thumb/ABk0k6s47uNT-fIsZJe04bC2wU7sKwn3ojvSHyjuPYqbziMV2Ko9kSSqz5byMwoc4qj9ZFtr7AGm8ibk4xZ6c2BACJMnZ-at9wb5cYKqkPFu4wKzdO96qJNiIQf3C8WUeek1YbSWywu_FUkl2wOQHsSciwpv4VH3c3FBhja2a_PyVC-ymwQWKrEc7zQVb4g-7ivzYSMz-MZzbBM5dKxDaH9JGFM5WJ054bCGm4HLXPFRLgjweAg1GrisE_T5sqttQHaPs_43MYytabG58ahtKw-NuruzxcsyUzii7MMIBKetSELaikeG5Kyh1Qmq8uHquQpPo7Er89-axth-YZEld9Dg9JvJKrXgBq0bZBPOrMFHykYEpnVskq9bwR6Bp-2flJeqtZvrNAwT7RrfLIiawy9pAjy8N3zC5ZvcVczrICv9hQ/p.png"
+          src="https://ucarecdn.com/fcc756fa-de3c-4b01-8a8b-f5682ac39ad4/"
           href="#"
         />
 
@@ -100,7 +100,7 @@
         class="modal fade"
         aria-labelledby="applyNowModalLabel"
         aria-hidden="true"
-        x-data
+        x-data=""
         x-init="modal = new bootstrap.Modal($el);"
         @shown-bs-modal.dot="u('input').first().focus()"
         @open-form-modal.window="modal.show()"
@@ -127,7 +127,7 @@
               >
                 <div class="container">
                   <div class="row row-cols-1 row-cols-lg-2 g-4">
-                    <div class="mb-3 col">
+                    <div class="col">
                       <label for="First-Name">First Name</label>
                       <input
                         placeholder="First Name"
@@ -140,7 +140,7 @@
                         First Name is required.
                       </div>
                     </div>
-                    <div class="mb-3">
+                    <div>
                       <label for="Last-Name">Last Name</label>
                       <input
                         placeholder="Last Name"
@@ -151,23 +151,23 @@
                       />
                       <div class="invalid-feedback">Last Name is required.</div>
                     </div>
-                    <div class="mb-3">
-                      <label for="Zip">Zip</label>
+                    <div>
+                      <label for="phone">Phone Number</label>
                       <input
-                        placeholder="Zip Code"
+                        placeholder="Phone Number"
                         class="form-control"
-                        type="text"
-                        name="zip"
-                        data-rules="['required','minLength:4','maxLength:5']"
+                        type="tel"
+                        name="phone"
+                        data-rules="['required','minLength:14']"
                         @blur="validateField($el)"
-                        x-mask="99999"
+                        x-mask="(999) 999-9999"
                       />
                       <div class="invalid-feedback">
-                        Please enter a 5 digit zip code.
+                        Please enter a valid phone number.
                       </div>
                     </div>
-                    <div class="mb-3">
-                      <label for="email">Email</label>
+                    <div>
+                      <label for="email">Email Address</label>
                       <input
                         placeholder="Email"
                         class="form-control"
@@ -182,25 +182,9 @@
                         Please enter a valid email address.
                       </div>
                     </div>
-                    <div class="mb-3">
-                      <label for="phone">Enter your phone number</label>
-                      <input
-                        placeholder="Phone Number"
-                        class="form-control"
-                        type="tel"
-                        name="phone"
-                        data-rules="['required','minLength:14']"
-                        @blur="validateField($el)"
-                        x-mask="(999) 999-9999"
-                      />
-                      <div class="invalid-feedback">
-                        Please enter a valid phone number.
-                      </div>
-                    </div>
-                    <div class="mb-3">
+                    <div>
                       <label for="communication"
-                        >Perfered Communication Method:</label
-                      >
+                        >Communication Preference</label>
                       <select
                         class="form-select"
                         data-rules="['required', 'minLength:1']"
@@ -212,10 +196,52 @@
                         <option value="Email">Email</option>
                       </select>
                       <div class="invalid-feedback">
-                        Please choose a perfered method of communication.
+                        Please choose a preferred method of communication.
                       </div>
                     </div>
-                    <div class="mb-3">
+                    <div>
+                      <label>How Did You Hear About Us?</label>
+                      <select
+                        class="form-select"
+                        data-rules="['required', 'minLength:1']"
+                      >
+                        <option value="" selected disabled>
+                          Please Select...
+                        </option>
+                        <option value="Indeed">Indeed</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="CDLLife">CDLLife</option>
+                        <option value="Truckers Report">Truckers Report</option>
+                        <option value="Website">Website</option>
+                        <option value="Saw Our Trucks">Saw Our Trucks</option>
+                        <option value="Craigslist">Craigslist</option>
+                        <option value="Referral">Referral</option>
+                        <option value="Prevously Employed">
+                          Prevously Employed
+                        </option>
+                        <option value="Event">Event</option>
+                        <option value="Other">Other</option>
+                      </select>
+                      <div class="invalid-feedback">
+                        Please tell us how you head about us.
+                      </div>
+                    </div>
+                    <div>
+                      <label for="Zip">Zip Code Where You're Located</label>
+                      <input
+                        placeholder="Zip Code"
+                        class="form-control"
+                        type="text"
+                        name="zip"
+                        data-rules="['required','minLength:4','maxLength:5']"
+                        @blur="validateField($el)"
+                        x-mask="99999"
+                      />
+                      <div class="invalid-feedback">
+                        Please enter a 5 digit zip code.
+                      </div>
+                    </div>
+                    <div>
                       <label>How much CDL-A Experience?</label>
                       <select
                         class="form-select"
@@ -239,28 +265,7 @@
                         Please describe your experience.
                       </div>
                     </div>
-                    <div class="mb-3">
-                      <label>How did you hear about us?</label>
-                      <select
-                        class="form-select"
-                        data-rules="['required', 'minLength:1']"
-                      >
-                        <option value="" selected disabled>
-                          Please Select...
-                        </option>
-                        <option value="0">Friend/Relative</option>
-                        <option value="1">Social Media</option>
-                        <option value="2">Job Posting Site</option>
-                        <option value="3">Referral</option>
-                        <option value="4">Advertisment</option>
-                        <option value="5">Search Engine</option>
-                        <option value="24">Other</option>
-                      </select>
-                      <div class="invalid-feedback">
-                        Please tell us how you head about us.
-                      </div>
-                    </div>
-                    <div class="mb-3">
+                    <div>
                       <label>Endorsements</label>
                       <select
                         id="multiple"
@@ -281,7 +286,7 @@
                         Please select endoresements.
                       </div>
                     </div>
-                    <div class="mb-3">
+                    <div>
                       <label for="TWIC">TWIC Card?</label>
                       <select
                         class="form-select"
@@ -306,7 +311,7 @@
                       receive automated marketing calls or text messages (e.g.,
                       prerecorded and/or autodialed calls), regardless of any
                       previous registration on any company, State or National Do
-                      Not Call list, and emails from ______ and AvatarFleet LLC.
+                      Not Call list, and emails from L. J. Rogers and AvatarFleet LLC.
                       You may opt out any time. Message & data rates may apply.
                     </div>
                   </div>
@@ -336,7 +341,10 @@
       <div class="container">
         <div class="row">
           <div class="col">
-            <img src="TruckHead.png" class="round-img mx-auto d-block" />
+            <img
+              src="https://ucarecdn.com/2bc17b84-5ea5-45a5-bdf7-dc82df439a76/"
+              class="round-img mx-auto d-block"
+            />
           </div>
         </div>
       </div>
@@ -354,20 +362,19 @@
         <div class="row text-center row-cols-1 row-cols-lg-2 g-4">
           <div class="col">
             <div class="mb-3">
-              <img src="TruckReg.jpg" class="card-img" alt="..." />
+              <img src="https://ucarecdn.com/786ca46e-9696-4efa-a7e6-c0b8524ed486/-/crop/16:9/center/" class="card-img" alt="..." />
             </div>
             <a
               href="#"
               class="btn btn-danger py-2 px-4 fw-bold rounded-pill text-uppercase"
               aria-current="page"
-              data-bs-toggle="modal"
-              data-bs-target="#applyNowModal"
+              @click="$dispatch('open-form-modal');"
               >Apply Now For Regional</a
             >
           </div>
           <div class="col">
             <div class="mb-3">
-              <img src="TruckTeams.webp" class="card-img" alt="..." />
+              <img src="	https://ucarecdn.com/948269b4-58ac-48e3-aba1-5f54e6a6feac/-/crop/16:9/0,200/" class="card-img" alt="..." />
             </div>
             <a
               href="#"
@@ -410,13 +417,22 @@
       <div class="container">
         <div class="row text-center row-cols-1 row-cols-lg-3 g-4">
           <div class="col">
-            <img src="1.webp" width="100%" />
+            <img
+              src="	https://ucarecdn.com/d8fa1203-8949-4cb1-8dab-dd658903b010/"
+              width="100%"
+            />
           </div>
           <div class="col">
-            <img src="2.webp" width="100%" />
+            <img
+              src="	https://ucarecdn.com/e88766e1-189b-412b-91b0-1f4adf3debce/"
+              width="100%"
+            />
           </div>
           <div class="col">
-            <img src="3.webp" width="100%" />
+            <img
+              src="https://ucarecdn.com/b2808897-5580-4fc4-85d3-2257ae879532/"
+              width="100%"
+            />
           </div>
         </div>
       </div>
