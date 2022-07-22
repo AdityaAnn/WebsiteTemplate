@@ -154,7 +154,7 @@
                       <div class="invalid-feedback">Last Name is required.</div>
                     </div>
                     <div>
-                      <label for="phone">Enter your phone number</label>
+                      <label for="phone">Phone Number</label>
                       <input
                         placeholder="Phone Number"
                         class="form-control"
@@ -169,7 +169,7 @@
                       </div>
                     </div>
                     <div>
-                      <label for="email">Email</label>
+                      <label for="email">Email Address</label>
                       <input
                         placeholder="Email"
                         class="form-control"
@@ -186,7 +186,7 @@
                     </div>
                     <div>
                       <label for="communication"
-                        >Perferred Communication Method:</label
+                        >Communication Preference</label
                       >
                       <select
                         class="form-select"
@@ -203,7 +203,7 @@
                       </div>
                     </div>
                     <div>
-                      <label>How did you hear about us?</label>
+                      <label>How Did You Hear About Us?</label>
                       <select
                         class="form-select"
                         data-rules="['required', 'minLength:1']"
@@ -228,7 +228,7 @@
                       </div>
                     </div>
                     <div>
-                      <label for="Zip">Zip</label>
+                      <label for="Zip">Zip Code Where You're Located</label>
                       <input
                         placeholder="Zip Code"
                         class="form-control"
@@ -312,7 +312,7 @@
                       receive automated marketing calls or text messages (e.g.,
                       prerecorded and/or autodialed calls), regardless of any
                       previous registration on any company, State or National Do
-                      Not Call list, and emails from ______ and AvatarFleet LLC.
+                      Not Call list, and emails from ATCO Hauling and AvatarFleet LLC.
                       You may opt out any time. Message & data rates may apply.
                     </div>
                   </div>
@@ -497,8 +497,7 @@
                 href="#"
                 class="btn btn-primary py-2 px-5 fw-bold rounded-pill text-uppercase"
                 aria-current="page"
-                data-bs-toggle="modal"
-                data-bs-target="#applyNowModal"
+                @click="$dispatch('open-form-modal');"
               >
                 Apply Now!
               </button>
