@@ -90,7 +90,7 @@
               aria-current="page"
               @click="$dispatch('open-form-modal');"
             >
-              Apply Now!!
+              Apply Now
             </button>
           </div>
         </div>
@@ -121,22 +121,22 @@
             </div>
             <div class="modal-body">
               <form
+                @submit="validateOnSubmit"
                 action="#"
                 method="POST"
                 novalidate
                 x-data=""
-                @submit="validateOnSubmit"
               >
                 <div class="container">
                   <div class="row row-cols-1 row-cols-lg-2 g-4">
                     <div class="col">
                       <label for="First-Name">First Name</label>
                       <input
-                        placeholder="First Name"
-                        class="form-control"
-                        name="fname"
-                        data-rules="['required']"
                         @blur="validateField($el)"
+                        class="form-control"
+                        data-rules="['required']"
+                        name="fname"
+                        placeholder="First Name"
                       />
                       <div class="invalid-feedback">
                         First Name is required.
@@ -145,23 +145,23 @@
                     <div>
                       <label for="Last-Name">Last Name</label>
                       <input
-                        placeholder="Last Name"
-                        class="form-control"
-                        name="lname"
-                        data-rules="['required']"
                         @blur="validateField($el)"
+                        class="form-control"
+                        data-rules="['required']"
+                        name="lname"
+                        placeholder="Last Name"
                       />
                       <div class="invalid-feedback">Last Name is required.</div>
                     </div>
                     <div>
                       <label for="phone">Phone Number</label>
                       <input
-                        placeholder="Phone Number"
-                        class="form-control"
-                        type="tel"
-                        name="phone"
-                        data-rules="['required','minLength:14']"
                         @blur="validateField($el)"
+                        class="form-control"
+                        data-rules="['required','minLength:14']"
+                        name="phone"
+                        placeholder="Phone Number"
+                        type="tel"
                         x-mask="(999) 999-9999"
                       />
                       <div class="invalid-feedback">
@@ -171,26 +171,26 @@
                     <div>
                       <label for="email">Email Address</label>
                       <input
-                        placeholder="Email"
-                        class="form-control"
-                        type="email"
-                        name="email"
-                        @keydown="limitKeys"
-                        data-valid-key-regex="[a-zA-Z0-9@-_+~.]"
-                        data-rules="['required','email']"
                         @blur="validateField($el)"
+                        @keydown="limitKeys"
+                        class="form-control"
+                        data-rules="['required','email']"
+                        data-valid-key-regex="[a-zA-Z0-9@-_+~.]"
+                        name="email"
+                        placeholder="Email"
+                        type="email"
                       />
                       <div class="invalid-feedback">
                         Please enter a valid email address.
                       </div>
                     </div>
                     <div>
-                      <label for="communication">
-                        Communication Preference
-                      </label>
+                      <label for="communication"
+                        >Communication Preference</label>
                       <select
                         class="form-select"
                         data-rules="['required', 'minLength:1']"
+                        name="communication"
                       >
                         <option value="" selected disabled>
                           Please Select...
@@ -207,6 +207,7 @@
                       <select
                         class="form-select"
                         data-rules="['required', 'minLength:1']"
+                        name="referral"
                       >
                         <option value="" selected disabled>
                           Please Select...
@@ -219,7 +220,9 @@
                         <option value="Saw Our Trucks">Saw Our Trucks</option>
                         <option value="Craigslist">Craigslist</option>
                         <option value="Referral">Referral</option>
-                        <option value="Prevously Employed">Prevously Employed</option>
+                        <option value="Prevously Employed">
+                          Prevously Employed
+                        </option>
                         <option value="Event">Event</option>
                         <option value="Other">Other</option>
                       </select>
@@ -230,12 +233,12 @@
                     <div>
                       <label for="Zip">Zip Code Where You're Located</label>
                       <input
-                        placeholder="Zip Code"
-                        class="form-control"
-                        type="text"
-                        name="zip"
-                        data-rules="['required','minLength:4','maxLength:5']"
                         @blur="validateField($el)"
+                        class="form-control"
+                        data-rules="['required','minLength:4','maxLength:5']"
+                        name="zip"
+                        placeholder="Zip Code"
+                        type="text"
                         x-mask="99999"
                       />
                       <div class="invalid-feedback">
@@ -247,6 +250,7 @@
                       <select
                         class="form-select"
                         data-rules="['required', 'minLength:1']"
+                        name="experience"
                       >
                         <option value="" selected disabled>
                           Please Select...
@@ -269,19 +273,20 @@
                     <div>
                       <label>Endorsements</label>
                       <select
-                        id="multiple"
                         data-rules="['required', 'minLength:1']"
+                        id="multiple"
                         multiple
+                        name="endorsements"
                       >
-                        <option value="1">None</option>
-                        <option value="2">
+                        <option value="None">None</option>
+                        <option value="Combination of Tank Vehicles and Hazrdous Materials">
                           Combination of Tank Vehicles and Hazrdous Materials
                         </option>
-                        <option value="3">Double/Triple Trailers</option>
-                        <option value="4">Hazrdous Materials</option>
-                        <option value="5">Tank Vehicles</option>
-                        <option value="6">Passenger</option>
-                        <option value="7">School Bus</option>
+                        <option value="Double/Triple Trailers">Double/Triple Trailers</option>
+                        <option value="Hazrdous Materials">Hazrdous Materials</option>
+                        <option value="Tank Vehicles">Tank Vehicles</option>
+                        <option value="Passenger">Passenger</option>
+                        <option value="School Bus">School Bus</option>
                       </select>
                       <div class="invalid-feedback">
                         Please select endoresements.
@@ -292,6 +297,7 @@
                       <select
                         class="form-select"
                         data-rules="['required', 'minLength:1']"
+                        name="twic"
                       >
                         <option value="" selected disabled>
                           Please Select...
@@ -417,7 +423,7 @@
 
     <section class="pb-5 mb-5 pt-5">
       <div class="container">
-        <div class="row text-center row-cols-1 row-cols-lg-3 g-4">
+        <div class="row text-center row-cols-1 row-cols-xl-3 g-4">
           <div class="col">
             <img
               src="https://ucarecdn.com/70c0b40d-985e-4340-9648-89c27bc8d249/"
@@ -498,7 +504,7 @@
                 aria-current="page"
                 @click="$dispatch('open-form-modal');"
               >
-                Apply Now!
+                Apply Now
               </button>
             </div>
           </div>
