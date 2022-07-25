@@ -84,11 +84,11 @@
           </button>
           <div class="my-auto">
             <button
-              class="btn btn-outline-danger active rounded-pill btn-hover"
+              class="btn btn-danger rounded-pill btn-hover"
               aria-current="page"
               @click="$dispatch('open-form-modal')"
             >
-              Apply Now!
+              Apply Now
             </button>
           </div>
         </div>
@@ -119,22 +119,22 @@
             </div>
             <div class="modal-body">
               <form
+                @submit="validateOnSubmit"
                 action="#"
                 method="POST"
                 novalidate
                 x-data=""
-                @submit="validateOnSubmit"
               >
                 <div class="container">
                   <div class="row row-cols-1 row-cols-lg-2 g-4">
                     <div class="col">
                       <label for="First-Name">First Name</label>
                       <input
-                        placeholder="First Name"
-                        class="form-control"
-                        name="fname"
-                        data-rules="['required']"
                         @blur="validateField($el)"
+                        class="form-control"
+                        data-rules="['required']"
+                        name="fname"
+                        placeholder="First Name"
                       />
                       <div class="invalid-feedback">
                         First Name is required.
@@ -143,23 +143,23 @@
                     <div>
                       <label for="Last-Name">Last Name</label>
                       <input
-                        placeholder="Last Name"
-                        class="form-control"
-                        name="lname"
-                        data-rules="['required']"
                         @blur="validateField($el)"
+                        class="form-control"
+                        data-rules="['required']"
+                        name="lname"
+                        placeholder="Last Name"
                       />
                       <div class="invalid-feedback">Last Name is required.</div>
                     </div>
                     <div>
                       <label for="phone">Phone Number</label>
                       <input
-                        placeholder="Phone Number"
-                        class="form-control"
-                        type="tel"
-                        name="phone"
-                        data-rules="['required','minLength:14']"
                         @blur="validateField($el)"
+                        class="form-control"
+                        data-rules="['required','minLength:14']"
+                        name="phone"
+                        placeholder="Phone Number"
+                        type="tel"
                         x-mask="(999) 999-9999"
                       />
                       <div class="invalid-feedback">
@@ -169,14 +169,14 @@
                     <div>
                       <label for="email">Email Address</label>
                       <input
-                        placeholder="Email"
-                        class="form-control"
-                        type="email"
-                        name="email"
-                        @keydown="limitKeys"
-                        data-valid-key-regex="[a-zA-Z0-9@-_+~.]"
-                        data-rules="['required','email']"
                         @blur="validateField($el)"
+                        @keydown="limitKeys"
+                        class="form-control"
+                        data-rules="['required','email']"
+                        data-valid-key-regex="[a-zA-Z0-9@-_+~.]"
+                        name="email"
+                        placeholder="Email"
+                        type="email"
                       />
                       <div class="invalid-feedback">
                         Please enter a valid email address.
@@ -188,8 +188,7 @@
                         options: [ 
                         'Email',
                         'Phone',
-                        ]}"
-                      >
+                        ]}">
                         <label>Communication Perferred:</label>
                         <select
                           name="my_option"
@@ -255,17 +254,16 @@
                             </div>
                           </div>
                         </div>
-                      </div>
                     </div>
                     <div>
                       <label for="Zip">Zip Code Where You're Located</label>
                       <input
-                        placeholder="Zip Code"
-                        class="form-control"
-                        type="text"
-                        name="zip"
-                        data-rules="['required','minLength:4','maxLength:5']"
                         @blur="validateField($el)"
+                        class="form-control"
+                        data-rules="['required','minLength:4','maxLength:5']"
+                        name="zip"
+                        placeholder="Zip Code"
+                        type="text"
                         x-mask="99999"
                       />
                       <div class="invalid-feedback">
@@ -284,8 +282,7 @@
                           '2 Years',
                           '4 Years',
                           '5 Years',
-                          ]}"
-                      >
+                          ]}">
                         <label>How much CDL-A Experience?</label>
                         <select
                           name="my_option"
@@ -319,8 +316,8 @@
                     >
                       <label>Endorsements</label>
                       <select
-                        id="multiple"
                         data-rules="['required', 'minLength:1']"
+                        id="multiple"
                         multiple
                         name="my_option"
                         x-model="selectedOption"
@@ -338,6 +335,7 @@
                       <select
                         class="form-select"
                         data-rules="['required', 'minLength:1']"
+                        name="twic"
                       >
                         <option value="" selected disabled>
                           Please Select...
@@ -367,7 +365,7 @@
                     <button
                       type="submit"
                       value="SUBMIT"
-                      class="btn btn-primary px-5"
+                      class="btn btn-danger px-5"
                     >
                       Submit
                     </button>
