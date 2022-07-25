@@ -183,50 +183,78 @@
                       </div>
                     </div>
                     <div>
-                      <label for="communication"
-                        >Communication Preference</label>
-                      <select
-                        class="form-select"
-                        data-rules="['required', 'minLength:1']"
-                        name="communication"
-                      >
-                        <option value="" selected disabled>
-                          Please Select...
-                        </option>
-                        <option value="Phone">Phone</option>
-                        <option value="Email">Email</option>
-                      </select>
-                      <div class="invalid-feedback">
-                        Please choose a preferred method of communication.
+                      <div
+                        x-data="{ selectedOption: '', 
+                        options: [ 
+                        'Email',
+                        'Phone',
+                        ]}">
+                        <label>Communication Perferred:</label>
+                        <select
+                          name="my_option"
+                          x-model="selectedOption"
+                          class="form-control"
+                          data-rules="['required', 'minLength:1']"
+                        >
+                          <option value="" disabled>
+                            Select All That Apply...
+                          </option>
+                          <template x-for="option in options" :key="option">
+                            <option :value="option" x-text="option"></option>
+                          </template>
+                        </select>
+                        <div class="invalid-feedback">
+                          Please choose a communication method.
+                        </div>
                       </div>
                     </div>
                     <div>
-                      <label>How Did You Hear About Us?</label>
-                      <select
-                        class="form-select"
-                        data-rules="['required', 'minLength:1']"
-                        name="referral"
-                      >
-                        <option value="" selected disabled>
-                          Please Select...
-                        </option>
-                        <option value="Indeed">Indeed</option>
-                        <option value="Facebook">Facebook</option>
-                        <option value="CDLLife">CDLLife</option>
-                        <option value="Truckers Report">Truckers Report</option>
-                        <option value="Website">Website</option>
-                        <option value="Saw Our Trucks">Saw Our Trucks</option>
-                        <option value="Craigslist">Craigslist</option>
-                        <option value="Referral">Referral</option>
-                        <option value="Prevously Employed">
-                          Prevously Employed
-                        </option>
-                        <option value="Event">Event</option>
-                        <option value="Other">Other</option>
-                      </select>
-                      <div class="invalid-feedback">
-                        Please tell us how you head about us.
-                      </div>
+                      <div>
+                        <div
+                          x-data="{ selectedOption: '', 
+                          options: [ 
+                          'Indeed',
+                          'Facebook',
+                          'CDLLife',
+                          'Truckers Report',
+                          'Website',
+                          'Saw Our Trucks',
+                          'Referral',
+                          'Phone',
+                          'Prevously Employed',
+                          'Event',
+                          'Other'
+                          ]}"
+                        >
+                          <div>
+                            <div>
+                              <label>How Did You Hear About Us?</label>
+                              <select
+                                name="my_option"
+                                x-model="selectedOption"
+                                class="form-control"
+                                data-rules="['required', 'minLength:1']"
+                              >
+                                <option value="" disabled>
+                                  Select All That Apply...
+                                </option>
+                                <template
+                                  x-for="option in options"
+                                  :key="option"
+                                >
+                                  <option
+                                    :value="option"
+                                    x-text="option"
+                                  ></option>
+                                </template>
+                              </select>
+                              <div class="invalid-feedback">
+                                Please tell us how you head about us.
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
                     </div>
                     <div>
                       <label for="Zip">Zip Code Where You're Located</label>
@@ -244,47 +272,60 @@
                       </div>
                     </div>
                     <div>
-                      <label>How much CDL-A Experience?</label>
-                      <select
-                        class="form-select"
-                        data-rules="['required', 'minLength:1']"
-                        name="experience"
-                      >
-                        <option value="" selected disabled>
-                          Please Select...
-                        </option>
-                        <option value="None">None</option>
-                        <option value="CDL Grad School">CDL Grad School</option>
-                        <option value="CDL Grad">CDL Grad</option>
-                        <option value="5 months">1-5 months</option>
-                        <option value="11 months">6-11 months</option>
-                        <option value="1 Year">1 Year</option>
-                        <option value="2 Years">2 Years</option>
-                        <option value="3 Years">3 Years</option>
-                        <option value="4 Year">4 Year</option>
-                        <option value="5 Years">5+ Years</option>
-                      </select>
-                      <div class="invalid-feedback">
-                        Please describe your experience.
+                      <div
+                        x-data="{ selectedOption: '', 
+                          options: [ 
+                          'CDL Grad School',
+                          'CDL Grad',
+                          '1-5 months',
+                          '6-11 months',
+                          '1 Year',
+                          '2 Years',
+                          '4 Years',
+                          '5 Years',
+                          ]}">
+                        <label>How much CDL-A Experience?</label>
+                        <select
+                          name="my_option"
+                          x-model="selectedOption"
+                          class="form-control"
+                          data-rules="['required', 'minLength:1']"
+                        >
+                          <option value="" disabled>
+                            Select All That Apply...
+                          </option>
+                          <template x-for="option in options" :key="option">
+                            <option :value="option" x-text="option"></option>
+                          </template>
+                        </select>
+                        <div class="invalid-feedback">
+                          Please tell us your experience.
+                        </div>
                       </div>
                     </div>
-                    <div>
+                    <div
+                      x-data="{ selectedOption: '', 
+                    options: [ 
+                    'None',
+                    'Combination of Tank Vehicles and Hazrdous Materials',
+                    'Double/Triple Trailers',
+                    'Hazrdous Materials',
+                    'Tank Vehicles',
+                    'Passenger',
+                    'School Bus',
+                    ]}"
+                    >
                       <label>Endorsements</label>
                       <select
                         data-rules="['required', 'minLength:1']"
                         id="multiple"
                         multiple
-                        name="endorsements"
+                        name="my_option"
+                        x-model="selectedOption"
                       >
-                        <option value="None">None</option>
-                        <option value="Combination of Tank Vehicles and Hazrdous Materials">
-                          Combination of Tank Vehicles and Hazrdous Materials
-                        </option>
-                        <option value="Double/Triple Trailers">Double/Triple Trailers</option>
-                        <option value="Hazrdous Materials">Hazrdous Materials</option>
-                        <option value="Tank Vehicles">Tank Vehicles</option>
-                        <option value="Passenger">Passenger</option>
-                        <option value="School Bus">School Bus</option>
+                        <template x-for="option in options" :key="option">
+                          <option :value="option" x-text="option"></option>
+                        </template>
                       </select>
                       <div class="invalid-feedback">
                         Please select endoresements.
@@ -316,8 +357,9 @@
                       receive automated marketing calls or text messages (e.g.,
                       prerecorded and/or autodialed calls), regardless of any
                       previous registration on any company, State or National Do
-                      Not Call list, and emails from L. J. Rogers and AvatarFleet LLC.
-                      You may opt out any time. Message & data rates may apply.
+                      Not Call list, and emails from L. J. Rogers and
+                      AvatarFleet LLC. You may opt out any time. Message & data
+                      rates may apply.
                     </div>
                   </div>
                   <div class="d-grid justify-content-end">
